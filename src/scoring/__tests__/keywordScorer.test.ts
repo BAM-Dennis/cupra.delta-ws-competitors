@@ -1,9 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { getConfig } from "@/data/config";
 import { pointsForArgument } from "@/engine/scoring";
+import type { Comp1Config } from "@/engine/types";
 import { evaluateByKeywords, keywordScorer } from "../keywordScorer";
 
-const config = getConfig("demo");
+const config = getConfig("demo") as Comp1Config;
 
 describe("keywordScorer", () => {
   it("erkennt Need und Differenzierer in Runde 1 (Lena vs R5)", () => {

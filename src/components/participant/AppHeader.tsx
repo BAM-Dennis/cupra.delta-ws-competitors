@@ -1,3 +1,4 @@
+import { isRoundPhase } from "@/engine/session";
 import type { Phase, WorkshopConfig } from "@/engine/types";
 import { Chip } from "../shared/bits";
 import { Overline } from "../shared/ui";
@@ -13,23 +14,29 @@ interface Props {
 const PHASE_TEXT: Record<Phase, string> = {
   lobby: "Lobby",
   persona: "Persona",
+  interview: "Interview",
+  motives: "Her motives",
   explore: "Explore",
   argue: "Your arguments",
+  features: "Your features",
   matrix: "Positioning",
   reveal: "The reveal",
+  summary: "Summary",
   leaderboard: "Results",
   ended: "Results",
 };
 
 /** Kopfzeile der Teilnehmer-App: Workshop, Phase/Runde, eigener Punktestand. */
 export function AppHeader({ config, phase, round, score, displayName }: Props) {
-  const inRound = ["persona", "explore", "argue"].includes(phase);
+  const inRound = isRoundPhase(phase);
+  const personaName = config.rounds[round]?.persona.name;
+  const text = phase === "motives" && personaName ? `${personaName}'s motives` : PHASE_TEXT[phase];
   return (
     <header className="flex items-start justify-between gap-3 pt-[max(16px,env(safe-area-inset-top))]">
       <div className="flex min-w-0 flex-col gap-1.5">
         <Overline className="truncate text-white/50">{config.title}</Overline>
         <div className="flex flex-wrap items-center gap-1.5">
-          <span className="text-[18px] font-medium leading-none">{PHASE_TEXT[phase]}</span>
+          <span className="text-[18px] font-medium leading-none">{text}</span>
           {inRound && (
             <Chip tone="teal">
               Round {round + 1} of {config.rounds.length}

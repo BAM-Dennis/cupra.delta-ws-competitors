@@ -1,6 +1,6 @@
 # CUPRA Competitor Workshop App – Umsetzungsplan
 
-**Stand: 14.09.2026 · Phase 0 lokal umgesetzt und durchgeklickt (siehe README) · Basis: „Developer-Briefing: Workshop-App (Konzept-Umfang zur Aufwandsschätzung)“ vom 10.09.2026 (SAPERED)**
+**Stand: 14.09.2026 · Phase 0 für Competitor I und II lokal umgesetzt und durchgeklickt (siehe README) · Basis: Developer-Briefings „Competitor I“ (10.09.2026) und „Competitor II“ (14.09.2026) von SAPERED**
 **Ziel dieses Plans: zuerst ein schneller, vorzeigbarer Prototyp, danach in klaren Stufen zur raumfähigen Version. Design/CI kommt vom Grafiker und ist eine eigene Phase.**
 **Technische Referenz: `cupra.streak-challenge` (Next.js, Tailwind 4, Postgres über `pg`, Vitest, Vercel + Neon). Stack, Design-Tokens, Fonts und Infrastruktur-Bausteine werden übernommen.**
 
@@ -10,7 +10,7 @@
 
 1. **Prototyp vor Plattform.** Phase 0 liefert in etwa zwei Tagen einen klickbaren Prototyp aller Screens auf dem Handy, ohne Datenbank und ohne KI. Er dient dem Abgleich mit SAPERED und CUPRA, bevor Backend und Scoring gebaut werden.
 2. **Regeln als reine Funktionen.** Punktevergabe (Argumente, Matrix), Session-Zustandsmaschine und Konfigurations-Validierung liegen framework-frei in `src/engine/` und sind per Vitest getestet. Die KI liefert nur Ja/Nein-Kriterien und Feedback-Text, die Punkte rechnet der Code. Damit ist „gleichartige Argumente bekommen dieselbe Punktzahl“ eine Eigenschaft des Codes, nicht des Modells.
-3. **Eine Konfiguration, zwei Ansichten.** Personas, Kategorien, Differenzierungsliste, Matrix und Lösungsschlüssel stehen in einer JSON-Datei pro Markt. Teilnehmer-App und Trainer-Leinwand rendern dieselbe Quelle. Die Matrix existiert nirgends ein zweites Mal.
+3. **Eine Konfiguration, zwei Ansichten.** Personas, Kategorien, Differenzierungsliste, Matrix und Lösungsschlüssel (Comp I) beziehungsweise Motive, Feature-Motiv-Modell und Interview-Personas (Comp II) stehen in einer JSON-Datei pro Markt und Workshop. Die Datei trägt ein `type`-Feld, das Phasenfolge, Screens und Scorer auswählt. Teilnehmer-App und Trainer-Leinwand rendern dieselbe Quelle. Die Matrix existiert nirgends ein zweites Mal.
 4. **Polling statt WebSocket.** Die Trainer-Steuerung ändert den Sessionzustand nur eine Handvoll Mal in 45 Minuten. Teilnehmer-Geräte fragen alle 2 Sekunden einen winzigen Zustands-Endpunkt ab. Das ist auf Vercel ohne Zusatzinfrastruktur robust, überlebt Reconnects trivial und liegt weit innerhalb der geforderten Sekunden-Latenz. Upgrade auf SSE bleibt möglich, die Client-Schnittstelle ändert sich dabei nicht.
 5. **Server hält die Wahrheit.** Jedes abgesendete Argument und jede Matrix-Zuordnung wird sofort gespeichert. Ein Teilnehmer, der die Seite neu lädt, bekommt seinen Zustand vom Server zurück (US-1, Reconnect).
 6. **Austauschbarer Scorer.** Es gibt ein `Scorer`-Interface mit zwei Implementierungen: `keywordScorer` (regelbasiert, deterministisch, läuft ohne API-Key) und `llmScorer` (Claude API). Der Prototyp läuft mit dem ersten, die Produktversion mit dem zweiten. Das ist gleichzeitig die im Briefing geforderte getrennte Schätzung „echtes LLM versus vereinfacht“.
@@ -40,7 +40,7 @@ Nicht übernehmbar ist das Layout der Trainer-Ansicht. Die Streak Challenge hat 
 
 Nach jeder Phase existiert etwas Vorzeigbares. Aufwände sind grobe Orientierung für eine Person.
 
-### Phase 0 – Klick-Prototyp (ca. 2 Tage) · Meilenstein „Prototyp“ · **umgesetzt 14.09.2026, Deployment offen**
+### Phase 0 – Klick-Prototyp (ca. 2 Tage) · Meilenstein „Prototyp“ · **umgesetzt 14.09.2026 für Comp I und Comp II, Deployment offen**
 
 Ziel: alle Screens des Teilnehmer-Flows und die Trainer-Leinwand mit Demo-Inhalt, im echten Look, auf dem eigenen Handy per Vercel-Link bedienbar. Keine Datenbank, keine KI, keine Geräte-Synchronisation. Der Prototyp beantwortet die Frage „ist das der richtige Flow?“ bevor Backend-Aufwand entsteht.
 
@@ -151,7 +151,7 @@ Ziel: Argumente werden von Claude gegen das Raster aus Briefing Abschnitt 7 bewe
 | Übergreifende Identitätsmechanik | 1 bis 2 Tage | Wenn die Reihe entschieden hat (Codes, Badge), Anbindung in `identity.ts`, ggf. Import einer Teilnehmerliste |
 | Workshop-übergreifende Aggregation | 1 Tag | `participations` trägt bereits `workshop_ref`, eine Abfrage plus Ansicht |
 | Mehrsprachigkeit | 1,5 Tage | i18n-Aufbau aus der Streak Challenge übernehmen, Konfiguration pro Sprache |
-| Competitor II (emotional) | eigenes Konzept | nicht schätzen |
+| Competitor II (emotional) | siehe Abschnitt 13 | Briefing vom 14.09.2026 liegt vor, Prototyp-Screens sind umgesetzt |
 
 ---
 
@@ -417,6 +417,140 @@ Maximal 3 Punkte pro Argument, 9 pro Runde, 18 aus zwei Runden, plus Matrix (bei
 
 ---
 
-## 12. Nächster Schritt
+## 12. Competitor II (Briefing vom 14.09.2026)
 
-Phase 0 starten: Projekt aufsetzen, Bausteine aus der Streak Challenge kopieren, Demo-Konfiguration schreiben, Engine mit Tests, dann die Screens. Ziel ist ein Vercel-Link für SAPERED nach etwa zwei Tagen. Die Feedback-Runde zu Flow und Screens entscheidet, ob Phase 1 unverändert startet.
+### 12.1 Screening des Briefings
+
+Comp II ist kein zweiter Workshop-Baukasten, sondern ein zweiter **Workshop-Typ auf derselben Plattform**. Session, Identität, Trainer-Leinwand, dialogische Eingabe-Mechanik, Scoring-Gerüst, Leaderboard, Realtime und Konfigurations-Gerüst werden geteilt und nicht doppelt geschätzt. Neu sind drei Bausteine:
+
+1. **Persona-Interview** mit KI in der Rolle (Matcher A: Frage → Motiv). Der Teilnehmer stellt offene Freitextfragen, die Persona antwortet in-character und deckt bei klarem Treffer genau ein noch unentdecktes Motiv auf. Geschlossene oder themenferne Fragen bekommen einen In-Character-Stups.
+2. **Feature-Motiv-Modell many-to-many** (Matcher B: Feature → Motiv). Der Teilnehmer nennt ein CUPRA-Feature und ordnet es einem Motiv zu; gültig, wenn das Paar im Modell steht. Dasselbe Feature kann unter mehreren Motiven gültig sein.
+3. **Motiv-Zusammenfassung für die Leinwand.** Alle Feature-Nennungen aller Teilnehmer, geclustert nach Motiv, über beide Runden, nicht nach Persona getrennt.
+
+Weggefallen gegenüber Comp I: die Positionierungs-Matrix. Neu im Ablauf je Runde: Persona-Vorstellung → Interview → Motiv-Reveal → Erkundung → Feature-Eingabe. Danach Zusammenfassung → Leaderboard.
+
+**Konsequenzen für Planung und Kunde, die aus dem Briefing folgen:**
+
+- **Zeit.** Zwei Interviews sind der Zeittreiber. SAPERED nennt 55 bis 60 Minuten und empfiehlt, die Workshop-Dauer zu erhöhen. Der Hebel bei hartem 45-Minuten-Limit ist die Fragenzahl (zwei statt drei), nicht eine Runde. Deshalb ist `interviewQuestions` eine Konfigurationsgröße pro Workshop.
+- **Zwei echte KI-Klassifikationen statt einer.** Der Schätz-Hebel „echtes LLM versus regelbasiert“ gilt zweimal. Matcher A ist anspruchsvoller als alles in Comp I: die Persona muss in der Rolle antworten, konsistent bleiben und darf keine Motive außerhalb der Liste erfinden. Das ist der zentrale Risiko- und Kostenpunkt von Comp II.
+- **Fairness-Regeln sind Code, nicht Prompt.** Maximal ein Motiv pro Frage, bereits entdeckte Motive zählen nicht erneut, Schwellenwert für Treffer. Diese Regeln liegen in `engine/` und im Scorer-Interface, das LLM liefert nur Klassifikation plus Text.
+- **Reifegrad Pitch.** Fragenzahl und Darstellung des Motiv-Reveals werden im Feinkonzept festgelegt. Der Prototyp folgt der Empfehlung aus B7: während des Interviews nur ein dezentes Signal („something surfaced“ plus Fortschrittsbalken), die explizite Benennung erst im Reveal.
+- **Content-Abhängigkeit** wie in Comp I: Motive je Persona mit Themen und Aufdeck-Sätzen, Feature-Motiv-Modell und die zwei Personas kommen von CUPRA. Ohne sie sind beide Matcher willkürlich.
+
+### 12.2 Was im Prototyp umgesetzt ist (14.09.2026)
+
+- [x] Konfiguration als diskriminierte Union `type: "competitor-1" | "competitor-2"` mit eigenem zod-Schema je Typ; Referenzprüfung für Motive, Feature-Paare, Personas
+- [x] Session-Zustandsmaschine kennt beide Phasenfolgen (`phaseSequence({ type, rounds })`)
+- [x] `Scorer`-Interface um `answerInterview`, `scoreFeature`, `summarizeRound2` erweitert; `keywordScorer` implementiert alle drei regelbasiert (Fragewort-Heuristik für offen/geschlossen, Stichwort-Matching gegen Motiv-Themen, Feature-Erkennung plus Paar-Prüfung)
+- [x] Punkteregeln in `engine/scoring.ts`: ein Punkt pro aufgedecktem Motiv, ein Punkt für erkanntes Feature plus ein Punkt für gültiges Paar; Clustering nach Motiv in `clusterFeaturesByMotive`
+- [x] Demo-Konfiguration `demo2.json`: CUPRA Delta vs MINI (Nico) und smart (Sara), vier Motive, sieben Features aus der Tabelle des Briefings, drei Fragen. Fachlich Platzhalter
+- [x] Teilnehmer-Screens: Persona-Vorstellung mit verdeckten Motiven, Interview-Chat mit In-Character-Antworten, Motiv-Reveal, Erkundung mit Motiv-Leitplanken, Feature-Eingabe mit Motiv-Auswahl und Feedback pro Feature, Warte-Screen zur Zusammenfassung, Ergebnis
+- [x] Trainer-Leinwand: Persona-Vorstellung, Interview-Fortschritt, Motiv-Reveal, Feature-Fortschritt, Zusammenfassung nach Motiv, Leaderboard
+- [x] Session-Codes `demo` (Comp I) und `demo2` (Comp II), Einstiegsseite verlinkt beide
+- [ ] Vercel-Deployment
+
+### 12.3 Zusatzaufwand Competitor II auf der Comp-I-Plattform
+
+Voraussetzung: Phasen 1 bis 4 für Comp I sind gebaut. Die Zahlen sind Zusatzaufwand für eine Person.
+
+| Baustein | Variante A (vereinfacht) | Variante B (echtes LLM) |
+|---|---|---|
+| Matcher A, Interview | Stichwort- und Fragewort-Heuristik, feste Aufdeck-Sätze und Stups-Texte aus der Konfiguration. Ca. 0,5 Tag (im Prototyp enthalten). Schwäche: erkennt nur gepflegte Themenwörter, Antworten wirken nach der zweiten Frage vorhersehbar | Claude in der Persona-Rolle mit Structured Outputs `{ reply, isOpen, discoveredMotiveId }`. System-Prompt mit Persona-Hintergrund, Motivliste mit Themen, Gesprächsverlauf, harte Regeln (kein Motiv außerhalb der Liste, maximal eins pro Frage, Schwellenwert). Prompt-Caching auf Persona plus Motivliste. Eval-Satz mit 30 bis 40 Fragen, offen/geschlossen und Treffer/Grenzfall. Ca. 2 Tage |
+| Matcher B, Feature | Stichwort-Matching gegen die Feature-Liste plus Paar-Prüfung. Ca. 0,25 Tag (im Prototyp enthalten) | Claude klassifiziert den Freitext auf eine Feature-ID (oder keine), Paar-Prüfung bleibt im Code. Mechanik identisch zum Argument-Scorer aus Comp I, deshalb günstig. Ca. 0,5 Tag |
+| Motiv-Zusammenfassung | Deterministisches Clustering über die erkannten Feature-IDs, unerkannte Texte als eigene Einträge. Ca. 0,5 Tag (im Prototyp enthalten) | Zusätzlich KI-Verdichtung der unerkannten Freitexte zu Gruppen und eine Formulierung je Motiv als Vorlage fürs Schlusswort. Ca. 0,5 Tag |
+| Konfiguration | Excel-Template um Blätter Motive, Persona-Motive, Features erweitern. Ca. 0,5 Tag | wie A |
+| Screens und Trainer-Views | Im Prototyp umgesetzt; Anpassung an Server-Daten in Phase 1 ca. 0,5 Tag | wie A |
+| Backend | Tabellen `interview_turns`, `feature_submissions`, Endpunkte `/interview`, `/features`, `/summary`, Fortschritts-Endpunkt erweitert. Ca. 1 Tag | wie A |
+
+**Summe Comp II zusätzlich zu Comp I:** Variante A durchgängig ca. 2,5 Tage, Variante B bei beiden Matchern ca. 5 Tage. Empfehlung: Matcher A als echtes LLM (das Interview lebt von der In-Character-Antwort, regelbasiert wirkt es nach zwei Fragen mechanisch), Matcher B kann zunächst regelbasiert bleiben und mit dem Argument-Scorer aus Comp I zusammen auf LLM wechseln.
+
+### 12.4 Datenmodell-Delta (SQL, Phase 1)
+
+```sql
+create table interview_turns (
+  id                  uuid primary key default gen_random_uuid(),
+  participation_id    uuid not null references participations(id) on delete cascade,
+  round               int  not null,
+  idx                 int  not null,
+  question            text not null,
+  reply               text not null,
+  is_open             boolean not null,
+  discovered_motive   text,                       -- motiveId oder null
+  points              int  not null default 0,
+  scorer              text,
+  latency_ms          int,
+  created_at          timestamptz not null default now(),
+  unique (participation_id, round, idx)
+);
+
+create table feature_submissions (
+  id                  uuid primary key default gen_random_uuid(),
+  participation_id    uuid not null references participations(id) on delete cascade,
+  round               int  not null,
+  idx                 int  not null,
+  text                text not null,
+  motive_id           text not null,
+  feature_id          text,                       -- erkanntes Feature oder null
+  pair_valid          boolean not null,
+  points              int  not null default 0,
+  scorer              text,
+  created_at          timestamptz not null default now(),
+  unique (participation_id, round, idx)
+);
+```
+
+Motive, Persona-Motive und das Feature-Motiv-Modell liegen wie alle Inhalte in der Konfiguration (`sessions.config`), nicht in eigenen Tabellen. Die Zusammenfassung nach Motiv ist eine Abfrage über `feature_submissions` einer Session, gruppiert nach `motive_id` und `feature_id`.
+
+### 12.5 Konfigurationsformat Competitor II
+
+```jsonc
+{
+  "id": "demo2",
+  "type": "competitor-2",
+  "interviewQuestions": 3,
+  "brands": [ /* wie Comp I */ ],
+  "motives": [
+    { "id": "m-standout", "label": "Standing out", "description": "…" }
+  ],
+  "features": [
+    { "id": "f-exterior", "text": "Distinctive exterior with copper accents", "motiveIds": ["m-standout", "m-design"], "keywords": ["copper", "…"] }
+  ],
+  "rounds": [
+    {
+      "id": "r1",
+      "competitorBrandId": "mini",
+      "persona": {
+        "name": "Nico",
+        "tagline": "29, creative agency",
+        "intro": "Hi, I'm Nico. …",
+        "background": "Nur für die KI-Rolle, nicht sichtbar",
+        "motives": [
+          { "motiveId": "m-standout", "topics": ["what his colleagues drive", "…"], "revealLine": "Honestly? Half my agency …", "keywords": ["colleagues", "…"] }
+        ],
+        "nudgeLines": ["Hm, yes or no doesn't really get you far with me. …"]
+      },
+      "categories": [ /* wie Comp I */ ]
+    }
+  ]
+}
+```
+
+Motive sind global definiert, damit die Zusammenfassung über beide Personas nach Motiv sortieren kann. Die persona-spezifische Ausprägung (Themen, Aufdeck-Satz) hängt an der Persona.
+
+### 12.6 Konstanten Competitor II (`src/engine/config.ts`)
+
+| Konstante | Wert | Quelle |
+|---|---|---|
+| `INTERVIEW_QUESTIONS_DEFAULT` | 3 | B2, Feinkonzept: zwei oder drei; pro Konfiguration überschreibbar |
+| `FEATURES_PER_ROUND` | 3 | D1 |
+| `POINTS_MOTIVE_DISCOVERED` | 1 | US-2, maximal eins pro Frage |
+| `POINTS_FEATURE_RECOGNIZED` | 1 | Annahme: formatives Feedback „echtes Feature, falsches Motiv“ |
+| `POINTS_FEATURE_PAIR` | 1 | D3 |
+
+Maximum je Runde mit drei Motiven und drei Fragen: 3 plus 6 gleich 9 Punkte, über zwei Runden 18. Die Aufteilung in „erkannt“ und „Paar gültig“ ist eine Annahme des Prototyps, das Briefing nennt nur „Punkte pro gültigem Paar“. Mit CUPRA zu bestätigen.
+
+---
+
+## 13. Nächster Schritt
+
+Vercel-Deployment des Prototyps mit beiden Workshop-Typen, Link an SAPERED. Die Feedback-Runde zu Flow und Screens entscheidet, ob Phase 1 unverändert startet. Für Comp II vor Phase 2 mit SAPERED klären: Fragenzahl, Punktaufteilung beim Feature-Scoring, und ob Matcher A als echtes LLM gesetzt ist.

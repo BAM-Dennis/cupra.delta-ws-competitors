@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { maxMatrixPoints } from "@/engine/scoring";
-import type { Placement, WorkshopConfig } from "@/engine/types";
+import type { Comp1Config, Placement } from "@/engine/types";
 import type { Participant } from "@/lib/participant";
 import { Chip, Glyph, PointsBadge } from "../shared/bits";
 import { BrandChip, Matrix } from "../shared/Matrix";
@@ -12,7 +12,7 @@ import { Overline, Panel, PrimaryButton } from "../shared/ui";
 /* Zuordnung (US-7)                                                    */
 /* ------------------------------------------------------------------ */
 
-export function MatrixScreen({ config, me, onSubmit }: { config: WorkshopConfig; me: Participant; onSubmit: (p: Placement[]) => void }) {
+export function MatrixScreen({ config, me, onSubmit }: { config: Comp1Config; me: Participant; onSubmit: (p: Placement[]) => void }) {
   const [placements, setPlacements] = useState<Record<string, string>>({});
   const [selected, setSelected] = useState<string | null>(config.brands[0]?.id ?? null);
 
@@ -69,7 +69,7 @@ export function MatrixScreen({ config, me, onSubmit }: { config: WorkshopConfig;
   );
 }
 
-function WaitingForReveal({ config, me }: { config: WorkshopConfig; me: Participant }) {
+function WaitingForReveal({ config, me }: { config: Comp1Config; me: Participant }) {
   const placements = useMemo(() => Object.fromEntries((me.placements ?? []).map((p) => [p.brandId, p.positionId])), [me.placements]);
   return (
     <div className="flex flex-1 flex-col gap-5 pt-5">
@@ -90,7 +90,7 @@ function WaitingForReveal({ config, me }: { config: WorkshopConfig; me: Particip
 /* Auflösung (D4)                                                      */
 /* ------------------------------------------------------------------ */
 
-export function RevealScreen({ config, me }: { config: WorkshopConfig; me: Participant }) {
+export function RevealScreen({ config, me }: { config: Comp1Config; me: Participant }) {
   const results = me.placements ?? [];
   const placements = Object.fromEntries(results.map((p) => [p.brandId, p.positionId]));
   const points = results.reduce((s, r) => s + r.points, 0);

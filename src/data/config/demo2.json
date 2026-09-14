@@ -1,0 +1,112 @@
+{
+  "id": "demo2",
+  "type": "competitor-2",
+  "market": "GLOBAL",
+  "workshopRef": "competitor-2",
+  "language": "en",
+  "title": "Competitor Workshop II",
+  "_note": "DEMO CONTENT. Personas, motives, feature-motive pairs and all vehicle facts are placeholders and must be replaced by the official CUPRA content.",
+  "interviewQuestions": 3,
+  "brands": [
+    { "id": "cupra", "name": "CUPRA Delta", "short": "CUPRA", "isCupra": true, "present": true },
+    { "id": "mini", "name": "MINI Cooper E", "short": "MINI", "present": true },
+    { "id": "smart", "name": "smart #1", "short": "smart", "present": true }
+  ],
+  "motives": [
+    { "id": "m-standout", "label": "Standing out", "description": "Being noticed, being different from the crowd, not driving what everyone else drives." },
+    { "id": "m-joy", "label": "Driving joy", "description": "The physical thrill of driving: response, acceleration, feeling connected to the car." },
+    { "id": "m-design", "label": "Design as self-expression", "description": "The car as a statement of taste and personality, inside and out." },
+    { "id": "m-premium", "label": "Owning something special", "description": "Premium quality and the feeling of having earned something exclusive." }
+  ],
+  "features": [
+    { "id": "f-exterior", "text": "Distinctive exterior with copper accents", "motiveIds": ["m-standout", "m-design"], "keywords": ["copper", "exterior", "front", "lights", "sharp lines", "look", "looks", "aggressive", "stance", "wheels"] },
+    { "id": "f-seats", "text": "Sport seats and driver-focused cockpit", "motiveIds": ["m-joy", "m-premium"], "keywords": ["seats", "bucket", "sport seat", "cockpit", "driver-focused", "steering wheel", "driving position"] },
+    { "id": "f-ambient", "text": "Ambient lighting and interior details", "motiveIds": ["m-design", "m-premium"], "keywords": ["ambient", "lighting", "interior light", "details", "stitching", "interior details"] },
+    { "id": "f-acceleration", "text": "Instant acceleration and VZ character", "motiveIds": ["m-joy", "m-standout"], "keywords": ["acceleration", "vz", "power", "fast", "quick", "torque", "0-100", "punch", "sprint"] },
+    { "id": "f-sound", "text": "Sennheiser sound system", "motiveIds": ["m-premium", "m-joy"], "keywords": ["sennheiser", "sound", "speakers", "audio", "music"] },
+    { "id": "f-colours", "text": "Special colour and trim options", "motiveIds": ["m-standout", "m-design"], "keywords": ["colour", "color", "paint", "trim", "matte", "options", "personalise", "personalize"] },
+    { "id": "f-materials", "text": "Material quality and craftsmanship", "motiveIds": ["m-premium", "m-design"], "keywords": ["material", "materials", "quality", "craftsmanship", "finish", "soft touch", "build"] }
+  ],
+  "rounds": [
+    {
+      "id": "r1",
+      "competitorBrandId": "mini",
+      "persona": {
+        "name": "Nico",
+        "tagline": "29, works in a creative agency, lives downtown",
+        "intro": "Hi, I'm Nico. I work in a design agency, I cycle to work most days, and I'm looking at a small electric car for weekends and the occasional client visit. I've been to the MINI showroom twice. Ask me anything.",
+        "background": "Nico grew up in a small town and moved to the city for the creative scene. Very visual, notices details, dislikes anything generic. Slightly competitive. Would never say out loud that he wants to be noticed.",
+        "motives": [
+          {
+            "motiveId": "m-standout",
+            "topics": ["what his friends and colleagues drive", "how he feels in traffic among identical cars", "why the MINI appeals or not"],
+            "revealLine": "Honestly? Half my agency drives the same three cars. I want something people ask about at the lights, not something they've already forgotten.",
+            "keywords": ["friends", "colleagues", "others", "everyone", "different", "notice", "noticed", "stand out", "crowd", "same", "attention", "unique", "traffic"]
+          },
+          {
+            "motiveId": "m-design",
+            "topics": ["his taste, what he surrounds himself with", "what he liked or disliked at the showroom", "the interior, colours, details"],
+            "revealLine": "I'm a designer, so a car is like a piece of furniture I sit in every day. If the details are lazy I see it immediately. The car has to say something about me.",
+            "keywords": ["design", "style", "taste", "look", "looks", "interior", "colour", "color", "details", "aesthetic", "beautiful", "ugly", "furniture", "materials", "shape"]
+          },
+          {
+            "motiveId": "m-joy",
+            "topics": ["what he misses since selling his last car", "a drive he remembers", "how he wants the car to feel"],
+            "revealLine": "You know what I miss? That little kick when you pull away and the car just goes. My old Golf had that. Silent is fine, boring is not.",
+            "keywords": ["drive", "driving", "feel", "feels", "fun", "kick", "fast", "acceleration", "miss", "remember", "road", "corner", "excited", "thrill", "boring"]
+          }
+        ],
+        "nudgeLines": [
+          "Hm, yes or no doesn't really get you far with me. Ask me something I can talk about.",
+          "That's a bit of a checkbox question. What do you actually want to know about me?",
+          "I could answer that with one word. Try asking me why, or how."
+        ]
+      },
+      "categories": [
+        { "id": "c-exterior", "title": "First impression", "prompts": ["Stand ten metres away from both cars. Which one draws the eye first, and why?", "Find the copper details on the CUPRA. What do they signal compared to the MINI's chrome and round shapes?", "Look at the wheels and stance. Which car looks like it wants to move?"] },
+        { "id": "c-interior", "title": "Inside", "prompts": ["Sit in both driver seats. Which one holds you, which one just carries you?", "Compare materials at eye level and where your hands rest.", "Switch on the ambient lighting. What mood does each interior set?"] },
+        { "id": "c-character", "title": "Character", "prompts": ["Which car would Nico's colleagues recognise as 'his'?", "Find one detail on each car that a designer would notice and appreciate.", "Ask about the VZ version: what changes in character?"] }
+      ]
+    },
+    {
+      "id": "r2",
+      "competitorBrandId": "smart",
+      "persona": {
+        "name": "Sara",
+        "tagline": "41, dentist, two kids, the family SUV is parked at home",
+        "intro": "Hello, I'm Sara. We already have a big family car, this one is for me: my commute, my evenings, my weekends. I'm comparing it to the smart because my sister has one and loves it. What would you like to know?",
+        "background": "Sara worked hard for her practice and rarely buys anything for herself. Appreciates quality, quietly proud of what she has achieved. Loves music, drives alone most of the time. Would not call herself sporty but enjoys a good road.",
+        "motives": [
+          {
+            "motiveId": "m-premium",
+            "topics": ["what this car means to her personally", "what she treats herself to", "quality and craftsmanship she notices"],
+            "revealLine": "It sounds silly, but this is the first thing in years that's just for me. It should feel like I earned it, in every surface I touch.",
+            "keywords": ["yourself", "herself", "treat", "reward", "earned", "deserve", "quality", "premium", "special", "exclusive", "luxury", "own", "mean to you", "means"]
+          },
+          {
+            "motiveId": "m-joy",
+            "topics": ["how she drives when she is alone", "her evening commute", "music and mood in the car"],
+            "revealLine": "When I'm alone in the car with my music on, the drive home is the best part of my day. I want a car that makes that half hour feel alive.",
+            "keywords": ["alone", "evening", "commute", "music", "drive", "driving", "feel", "fun", "road", "mood", "enjoy", "playlist", "sound"]
+          },
+          {
+            "motiveId": "m-design",
+            "topics": ["what she thinks of the smart's look", "what she wants the car to say about her", "her taste at home"],
+            "revealLine": "The smart is cute, and that's exactly my problem with it. I don't want cute. I want something with a bit of edge that still looks grown-up.",
+            "keywords": ["look", "looks", "design", "style", "cute", "elegant", "taste", "say about", "statement", "edge", "grown-up", "colour", "color", "interior"]
+          }
+        ],
+        "nudgeLines": [
+          "I could just say yes to that. Ask me in a way that lets me tell you a bit more.",
+          "That feels like a form I'm filling in. What are you curious about?",
+          "Short answer: it depends. Ask me why, and I'll tell you."
+        ]
+      },
+      "categories": [
+        { "id": "c-quality", "title": "Quality you can touch", "prompts": ["Close the doors of both cars. Listen and feel the difference.", "Run your hand along the dashboard, the door cards and the centre console in both cars.", "Compare the seat materials and stitching."] },
+        { "id": "c-sound", "title": "Sound and mood", "prompts": ["Play the same track on both sound systems. Which one would Sara want for her drive home?", "Switch on the ambient lighting in the evening setting.", "Which cabin feels like a place to spend time in?"] },
+        { "id": "c-character", "title": "Character", "prompts": ["Which car looks 'cute' and which looks 'grown-up with an edge'?", "Find the CUPRA details that a smart owner would not expect.", "Ask about acceleration: what does Sara feel when she pulls away from the practice?"] }
+      ]
+    }
+  ]
+}

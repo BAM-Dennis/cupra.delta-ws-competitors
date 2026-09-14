@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { WorkshopConfig } from "@/engine/types";
+import type { Comp1Config, WorkshopConfig } from "@/engine/types";
 import type { Participant } from "@/lib/participant";
 import { Chip, Glyph } from "../shared/bits";
 import { Overline, Panel } from "../shared/ui";
@@ -33,10 +33,10 @@ export function LobbyScreen({ me, participants }: { me: Participant; participant
 }
 
 /* ------------------------------------------------------------------ */
-/* Persona                                                             */
+/* Persona, Competitor I: Needs sind sichtbar                          */
 /* ------------------------------------------------------------------ */
 
-export function PersonaScreen({ config, round }: { config: WorkshopConfig; round: number }) {
+export function PersonaScreen({ config, round }: { config: Comp1Config; round: number }) {
   const r = config.rounds[round];
   const competitor = config.brands.find((b) => b.id === r.competitorBrandId);
   const cupra = config.brands.find((b) => b.isCupra);
@@ -67,25 +67,40 @@ export function PersonaScreen({ config, round }: { config: WorkshopConfig; round
         </ul>
       </section>
 
-      <section className="glass flex items-center justify-between rounded-[6px] p-3.5 animate-fade-up [animation-delay:0.2s]">
-        <div className="flex flex-col gap-1">
-          <Overline className="text-white/50">This round</Overline>
-          <span className="text-[15px] font-medium">
-            {cupra?.name} <span className="font-light text-white/60">vs</span> {competitor?.name}
-          </span>
-        </div>
-        <Glyph name="arrow-right" className="size-5 text-copper-light" />
-      </section>
+      <VersusCard cupra={cupra?.name} competitor={competitor?.name} />
       <p className="text-center text-[12px] text-white/40">The trainer moves everyone on to the exploration.</p>
     </div>
   );
 }
 
+export function VersusCard({ cupra, competitor }: { cupra?: string; competitor?: string }) {
+  return (
+    <section className="glass flex items-center justify-between rounded-[6px] p-3.5 animate-fade-up [animation-delay:0.2s]">
+      <div className="flex flex-col gap-1">
+        <Overline className="text-white/50">This round</Overline>
+        <span className="text-[15px] font-medium">
+          {cupra} <span className="font-light text-white/60">vs</span> {competitor}
+        </span>
+      </div>
+      <Glyph name="arrow-right" className="size-5 text-copper-light" />
+    </section>
+  );
+}
+
 /* ------------------------------------------------------------------ */
-/* Exploration                                                         */
+/* Exploration, beide Workshops                                        */
 /* ------------------------------------------------------------------ */
 
-export function ExploreScreen({ config, round }: { config: WorkshopConfig; round: number }) {
+export function ExploreScreen({
+  config,
+  round,
+  guidance,
+}: {
+  config: WorkshopConfig;
+  round: number;
+  /** Comp II: die Motive der Persona als Leitplanken */
+  guidance?: { title: string; items: string[] };
+}) {
   const r = config.rounds[round];
   const [open, setOpen] = useState<string | null>(r.categories[0]?.id ?? null);
   const competitor = config.brands.find((b) => b.id === r.competitorBrandId);
@@ -97,6 +112,18 @@ export function ExploreScreen({ config, round }: { config: WorkshopConfig; round
           Compare the CUPRA with the {competitor?.name} along these categories, with {r.persona.name} in mind. Nothing to type here, just look, touch, ask.
         </p>
       </div>
+      {guidance && (
+        <div className="flex flex-col gap-2 rounded-[8px] border border-teal/30 bg-teal/10 p-3.5">
+          <Overline className="text-teal">{guidance.title}</Overline>
+          <div className="flex flex-wrap gap-1.5">
+            {guidance.items.map((g) => (
+              <Chip key={g} tone="glass">
+                {g}
+              </Chip>
+            ))}
+          </div>
+        </div>
+      )}
       <ul className="flex flex-col gap-2">
         {r.categories.map((c, i) => {
           const isOpen = open === c.id;
@@ -121,7 +148,9 @@ export function ExploreScreen({ config, round }: { config: WorkshopConfig; round
           );
         })}
       </ul>
-      <p className="text-center text-[12px] text-white/40">You&apos;ll formulate your arguments in the next step.</p>
+      <p className="text-center text-[12px] text-white/40">
+        {config.type === "competitor-1" ? "You'll formulate your arguments in the next step." : "You'll name your top features in the next step."}
+      </p>
     </div>
   );
 }

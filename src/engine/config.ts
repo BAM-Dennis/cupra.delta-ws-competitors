@@ -1,5 +1,6 @@
 /** Zentrale Konstanten. Quelle: Umsetzungsplan Abschnitt 9. */
 export const WS_CONFIG = {
+  /* Competitor I */
   ARGUMENTS_PER_ROUND: 3,
   ARGUMENT_MIN_CHARS: 8,
   ARGUMENT_MAX_CHARS: 400,
@@ -8,6 +9,21 @@ export const WS_CONFIG = {
   POINTS_KEY_BONUS: 1,
   POINTS_MATRIX_CORRECT: 1,
   MATRIX_CUPRA_MULTIPLIER: 2,
+
+  /* Competitor II */
+  /** Fallback, wenn die Konfiguration keine Fragenzahl setzt */
+  INTERVIEW_QUESTIONS_DEFAULT: 3,
+  QUESTION_MIN_CHARS: 6,
+  QUESTION_MAX_CHARS: 300,
+  FEATURES_PER_ROUND: 3,
+  /** Pro aufgedecktem Motiv, maximal eins pro Frage */
+  POINTS_MOTIVE_DISCOVERED: 1,
+  /** Feature ist ein gelistetes CUPRA-Feature */
+  POINTS_FEATURE_RECOGNIZED: 1,
+  /** Paar Feature/Motiv steht im Modell */
+  POINTS_FEATURE_PAIR: 1,
+
+  /* Plattform */
   STATE_POLL_MS: 2_000,
   PROGRESS_POLL_MS: 3_000,
   PHASE_GRACE_MS: 10_000,
@@ -19,3 +35,5 @@ export const WS_CONFIG = {
 
 export const MAX_POINTS_PER_ARGUMENT =
   WS_CONFIG.POINTS_NEED + WS_CONFIG.POINTS_DIFFERENTIATOR + WS_CONFIG.POINTS_KEY_BONUS;
+
+export const MAX_POINTS_PER_FEATURE = WS_CONFIG.POINTS_FEATURE_RECOGNIZED + WS_CONFIG.POINTS_FEATURE_PAIR;

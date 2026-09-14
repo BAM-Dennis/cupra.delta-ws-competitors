@@ -1,12 +1,13 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
 
-import { PHASE_LABEL, phaseSequence } from "@/engine/session";
-import type { Phase } from "@/engine/types";
-import { demoLeaderboard, demoProgress } from "@/lib/demoData";
+import { isRoundPhase, PHASE_LABEL, phaseSequence } from "@/engine/session";
+import type { Phase, WorkshopType } from "@/engine/types";
+import { demoLeaderboard, demoMotiveClusters, demoProgress } from "@/lib/demoData";
 import { useLocalSession } from "@/lib/useLocalSession";
 import { Glyph } from "../shared/bits";
 import { ArgueProgressView, ExploreView, LeaderboardView, LobbyView, MatrixView, PersonaView, RevealView } from "./views";
+import { FeaturesProgressView, InterviewProgressView, MotivesView, PersonaIntroView, SummaryView } from "./views2";
 
 /**
  * Trainer-/Präsentations-View für die Leinwand. Breites Layout, große Schrift,
@@ -17,31 +18,44 @@ export function TrainerApp({ code }: { code: string }) {
   const { config, state, me } = s;
   if (!s.loaded) return null;
 
-  const seq = phaseSequence(config.rounds.length);
+  const seq = phaseSequence({ type: config.type, rounds: config.rounds.length });
   const index = seq.findIndex((x) => x.phase === state.phase && x.round === state.round);
   const progress = demoProgress(config, state.phase, state.round, me);
   const leaderboard = demoLeaderboard(config, state.phase, state.round, me);
   const isLast = index === seq.length - 1;
 
-  let view: React.ReactNode;
+  let view: React.ReactNode = null;
+  const round = state.round;
   switch (state.phase) {
     case "lobby":
       view = <LobbyView code={code} participants={progress.participants} />;
       break;
     case "persona":
-      view = <PersonaView config={config} round={state.round} />;
+      view = config.type === "competitor-1" ? <PersonaView config={config} round={round} /> : <PersonaIntroView config={config} round={round} />;
+      break;
+    case "interview":
+      if (config.type === "competitor-2") view = <InterviewProgressView config={config} round={round} progress={progress} />;
+      break;
+    case "motives":
+      if (config.type === "competitor-2") view = <MotivesView config={config} round={round} />;
       break;
     case "explore":
-      view = <ExploreView config={config} round={state.round} />;
+      view = <ExploreView config={config} round={round} />;
       break;
     case "argue":
-      view = <ArgueProgressView config={config} round={state.round} progress={progress} />;
+      view = <ArgueProgressView config={config} round={round} progress={progress} />;
+      break;
+    case "features":
+      if (config.type === "competitor-2") view = <FeaturesProgressView config={config} round={round} progress={progress} />;
       break;
     case "matrix":
-      view = <MatrixView config={config} progress={progress} />;
+      if (config.type === "competitor-1") view = <MatrixView config={config} progress={progress} />;
       break;
     case "reveal":
-      view = <RevealView config={config} />;
+      if (config.type === "competitor-1") view = <RevealView config={config} />;
+      break;
+    case "summary":
+      if (config.type === "competitor-2") view = <SummaryView config={config} clusters={demoMotiveClusters(config, me)} />;
       break;
     case "leaderboard":
     case "ended":
@@ -100,7 +114,7 @@ export function TrainerApp({ code }: { code: string }) {
           <span className="text-[11px] font-medium uppercase tracking-[2px] text-white/50">Now</span>
           <span className="text-[18px] leading-none">
             {PHASE_LABEL[state.phase]}
-            {["persona", "explore", "argue"].includes(state.phase) && <span className="text-white/50"> · Round {state.round + 1}</span>}
+            {isRoundPhase(state.phase) && <span className="text-white/50"> · Round {state.round + 1}</span>}
           </span>
         </div>
         <button
@@ -109,26 +123,34 @@ export function TrainerApp({ code }: { code: string }) {
           disabled={isLast}
           className="flex h-12 min-w-[220px] items-center justify-center gap-2 rounded-[6px] bg-copper-gradient px-6 text-[14px] font-medium uppercase tracking-[1px] transition active:scale-[0.99] disabled:opacity-30"
         >
-          {nextLabel(state.phase, state.round, config.rounds.length)} <Glyph name="chevron-right" className="size-4" />
+          {nextLabel(state.phase, state.round, config.rounds.length, config.type)} <Glyph name="chevron-right" className="size-4" />
         </button>
       </footer>
     </div>
   );
 }
 
-function nextLabel(phase: Phase, round: number, rounds: number): string {
+function nextLabel(phase: Phase, round: number, rounds: number, type: WorkshopType): string {
+  const comp2 = type === "competitor-2";
   switch (phase) {
     case "lobby":
       return "Start workshop";
     case "persona":
+      return comp2 ? "Open interview" : "Send to the cars";
+    case "interview":
+      return "Reveal motives";
+    case "motives":
       return "Send to the cars";
     case "explore":
-      return "Open argument input";
+      return comp2 ? "Open feature input" : "Open argument input";
     case "argue":
       return round + 1 < rounds ? `Start round ${round + 2}` : "Open positioning";
+    case "features":
+      return round + 1 < rounds ? `Start round ${round + 2}` : "Show summary";
     case "matrix":
       return "Reveal solution";
     case "reveal":
+    case "summary":
       return "Show leaderboard";
     case "leaderboard":
       return "End workshop";
@@ -145,7 +167,7 @@ function PhaseStepper({ phases, rounds, current }: { phases: Phase[]; rounds: nu
         return (
           <li key={i} className="flex items-center gap-1.5">
             <span
-              title={`${PHASE_LABEL[p]} ${["persona", "explore", "argue"].includes(p) ? `R${rounds[i] + 1}` : ""}`}
+              title={`${PHASE_LABEL[p]} ${isRoundPhase(p) ? `R${rounds[i] + 1}` : ""}`}
               className={`block rounded-full transition-all ${state === "current" ? "h-2.5 w-7 bg-teal shadow-glow" : state === "done" ? "size-2.5 bg-copper-light" : "size-2.5 bg-white/20"}`}
             />
           </li>

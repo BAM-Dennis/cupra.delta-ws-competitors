@@ -2,9 +2,9 @@ import { describe, expect, it } from "vitest";
 import { getConfig } from "@/data/config";
 import { WS_CONFIG } from "../config";
 import { maxMatrixPoints, maxPointsPerRound, pointsForArgument, scoreMatrix, totalScore } from "../scoring";
-import type { Evaluation, ScoredArgument } from "../types";
+import type { Comp1Config, Evaluation, ScoredArgument } from "../types";
 
-const cfg = getConfig("demo");
+const cfg = getConfig("demo") as Comp1Config;
 
 const ev = (o: Partial<Evaluation>): Evaluation => ({
   addressesNeed: false,

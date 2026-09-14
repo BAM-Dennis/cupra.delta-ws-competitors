@@ -1,6 +1,6 @@
 "use client";
 
-import { maxMatrixPoints, maxPointsPerRound, roundPoints } from "@/engine/scoring";
+import { maxMatrixPoints, maxPointsPerRound, maxPointsPerRound2, roundPoints } from "@/engine/scoring";
 import type { LeaderboardEntry, WorkshopConfig } from "@/engine/types";
 import { participantScore, type Participant } from "@/lib/participant";
 import { BigStat } from "../shared/bits";
@@ -17,6 +17,22 @@ interface Props {
 export function ResultScreen({ config, me, leaderboard }: Props) {
   const total = participantScore(me);
   const matrixPts = me.placements?.reduce((s, m) => s + m.points, 0) ?? 0;
+
+  const tiles =
+    config.type === "competitor-1"
+      ? [
+          ...config.rounds.map((r, i) => ({ key: r.id, label: `Round ${i + 1}`, value: roundPoints(me.arguments, i), max: maxPointsPerRound() })),
+          { key: "matrix", label: "Matrix", value: matrixPts, max: maxMatrixPoints(config.brands) },
+        ]
+      : config.rounds.map((r, i) => ({
+          key: r.id,
+          label: `Round ${i + 1}`,
+          value:
+            (me.interviews ?? []).filter((t) => t.round === i).reduce((s, t) => s + t.points, 0) +
+            (me.features ?? []).filter((f) => f.round === i).reduce((s, f) => s + f.points, 0),
+          max: maxPointsPerRound2(config, i),
+        }));
+
   return (
     <div className="flex flex-col gap-5 pt-5">
       <Panel className="items-center animate-slide-up">
@@ -28,14 +44,11 @@ export function ResultScreen({ config, me, leaderboard }: Props) {
           </p>
         )}
         <div className="flex w-full gap-2 pt-2">
-          {config.rounds.map((r, i) => (
-            <StatTile key={r.id} label={`Round ${i + 1}`} footer={`of ${maxPointsPerRound()}`}>
-              {roundPoints(me.arguments, i)}
+          {tiles.map((t) => (
+            <StatTile key={t.key} label={t.label} footer={`of ${t.max}`}>
+              {t.value}
             </StatTile>
           ))}
-          <StatTile label="Matrix" footer={`of ${maxMatrixPoints(config.brands)}`}>
-            {matrixPts}
-          </StatTile>
         </div>
       </Panel>
       <section className="flex flex-col gap-2 animate-fade-up [animation-delay:0.2s]">
