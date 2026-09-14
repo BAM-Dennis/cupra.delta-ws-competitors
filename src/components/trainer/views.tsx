@@ -4,7 +4,7 @@
 import QRCode from "qrcode";
 import { useEffect, useState } from "react";
 import { WS_CONFIG } from "@/engine/config";
-import type { Comp1Config, LeaderboardEntry, WorkshopConfig } from "@/engine/types";
+import type { LeaderboardEntry, WorkshopConfig } from "@/engine/types";
 import { demoCorrectShare, type DemoProgress } from "@/lib/demoData";
 import { useClientValue } from "@/lib/useClientValue";
 import { Bar, BigStat, Chip, Glyph } from "../shared/bits";
@@ -61,7 +61,7 @@ export function LobbyView({ code, participants }: { code: string; participants: 
 
 /* ---------------- Persona ---------------- */
 
-export function PersonaView({ config, round }: { config: Comp1Config; round: number }) {
+export function PersonaView({ config, round }: { config: WorkshopConfig; round: number }) {
   const r = config.rounds[round];
   const competitor = config.brands.find((b) => b.id === r.competitorBrandId);
   const cupra = config.brands.find((b) => b.isCupra);
@@ -182,7 +182,7 @@ export function ArgueProgressView({ config, round, progress }: { config: Worksho
 
 /* ---------------- Matrix leer + Abgabe-Zähler ---------------- */
 
-export function MatrixView({ config, progress }: { config: Comp1Config; progress: DemoProgress }) {
+export function MatrixView({ config, progress }: { config: WorkshopConfig; progress: DemoProgress }) {
   return (
     <div className="grid flex-1 grid-cols-[1fr_1.4fr] gap-16">
       <div className="flex flex-col gap-6">
@@ -217,7 +217,7 @@ export function MatrixView({ config, progress }: { config: Comp1Config; progress
 
 /* ---------------- Auflösung ---------------- */
 
-export function RevealView({ config }: { config: Comp1Config }) {
+export function RevealView({ config }: { config: WorkshopConfig }) {
   return (
     <div className="grid flex-1 grid-cols-[1fr_1.4fr] gap-16 animate-reveal">
       <div className="flex flex-col gap-6">

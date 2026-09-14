@@ -46,12 +46,8 @@ export default function Home() {
           </PrimaryButton>
           <div className="mt-6 flex flex-col gap-2 rounded-[8px] border border-warn/30 bg-warn/5 p-4">
             <span className="text-[10px] font-medium uppercase tracking-[1.5px] text-warn">Prototype demo</span>
-            <span className="text-[11px] uppercase tracking-[1px] text-white/50">Competitor I · rational</span>
             <SecondaryButton href="/s/demo?dev=1">Participant view (with dev bar)</SecondaryButton>
             <SecondaryButton href="/t/demo">Trainer screen</SecondaryButton>
-            <span className="mt-2 text-[11px] uppercase tracking-[1px] text-white/50">Competitor II · emotional</span>
-            <SecondaryButton href="/s/demo2?dev=1">Participant view (with dev bar)</SecondaryButton>
-            <SecondaryButton href="/t/demo2">Trainer screen</SecondaryButton>
             <p className="text-[11px] leading-[1.4] text-white/50">
               Open both in the same browser: the trainer screen controls the phase, the participant tab follows. Cross-device sync comes with phase 1.{" "}
               <Link href="/s/demo" className="underline">

@@ -3,13 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import { MAX_POINTS_PER_ARGUMENT, WS_CONFIG } from "@/engine/config";
 import { maxPointsPerRound } from "@/engine/scoring";
-import type { Comp1Config, ScoredArgument } from "@/engine/types";
+import type { ScoredArgument, WorkshopConfig } from "@/engine/types";
 import type { Participant } from "@/lib/participant";
 import { Bar, Glyph, PointsBadge, TypingDots } from "../shared/bits";
 import { Overline, Panel, SecondaryButton } from "../shared/ui";
 
 interface Props {
-  config: Comp1Config;
+  config: WorkshopConfig;
   round: number;
   me: Participant;
   onSubmit: (text: string) => Promise<unknown>;
@@ -173,7 +173,7 @@ function ArgumentItem({ arg }: { arg: ScoredArgument }) {
 }
 
 /** Platzhalter-Gestaltung für das Feedback-Element (Briefing US-5: kommt vom Grafiker). */
-export function FeedbackBubble({ children, points, max = MAX_POINTS_PER_ARGUMENT, label = "Coach" }: { children: React.ReactNode; points?: number; max?: number; label?: string }) {
+function FeedbackBubble({ children, points }: { children: React.ReactNode; points?: number }) {
   return (
     <div className="flex max-w-[92%] items-start gap-2.5 self-start">
       <span className="mt-1 flex size-7 shrink-0 items-center justify-center rounded-full border border-teal/40 bg-teal-tint">
@@ -182,8 +182,8 @@ export function FeedbackBubble({ children, points, max = MAX_POINTS_PER_ARGUMENT
       <div className="flex min-w-0 flex-col gap-1.5 rounded-[12px] rounded-tl-[4px] border border-teal/30 bg-teal/10 px-4 py-3 backdrop-blur-[10px]">
         {points !== undefined && (
           <div className="flex items-center justify-between gap-3">
-            <span className="text-[10px] font-medium uppercase tracking-[1px] text-teal">{label}</span>
-            <PointsBadge points={points} max={max} />
+            <span className="text-[10px] font-medium uppercase tracking-[1px] text-teal">Coach</span>
+            <PointsBadge points={points} max={MAX_POINTS_PER_ARGUMENT} />
           </div>
         )}
         {children}
@@ -192,7 +192,7 @@ export function FeedbackBubble({ children, points, max = MAX_POINTS_PER_ARGUMENT
   );
 }
 
-export function Criterion({ ok, label }: { ok: boolean; label: string }) {
+function Criterion({ ok, label }: { ok: boolean; label: string }) {
   return (
     <span className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.5px] ${ok ? "border-correct/50 bg-correct/15 text-white" : "border-white/15 text-white/40"}`}>
       <Glyph name={ok ? "check" : "x"} className="size-3" />
