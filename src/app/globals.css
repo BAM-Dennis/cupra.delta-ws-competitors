@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Cupra";
+  src: url("/fonts/cupra-light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cupra";
+  src: url("/fonts/cupra-book.woff2") format("woff2");
+  font-weight: 350;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cupra";
+  src: url("/fonts/cupra-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cupra";
+  src: url("/fonts/cupra-medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Cupra", system-ui, -apple-system, sans-serif;
+  /* Farben aus dem Figma-Design CUPRA-GLT-27 (Stand 09.09.2026) */
+  --color-teal: #00afac;
+  --color-correct: #36a763;
+  --color-signal: #e1274e;
+  --color-warn: #f2b54a;
+  --color-copper: #aa6c43;
+  --color-copper-light: #b77f58;
+  --color-copper-mid: #9b613b;
+  --color-copper-dark: #804620;
+  --color-ink: #09090b;
+  --color-night: #1b1a23;
+  --color-neutral3: #a2a5a6;
+  --shadow-glow: 0 0 13px 0 rgba(0, 247, 255, 0.25);
+  --shadow-glow-strong: 0 0 26px 0 rgba(0, 247, 255, 0.25);
+  --shadow-card: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Kupfer-Verlauf des Primär-Buttons (Figma Gradient/500) */
+@utility bg-copper-gradient {
+  background-image: linear-gradient(28deg, #b77f58 0%, #9b613b 52.6%, #804620 100%);
+}
+/* Teal-Fläche der Badges und der eigenen Leaderboard-Zeile */
+@utility bg-teal-tint {
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)),
+    linear-gradient(90deg, rgba(0, 175, 172, 0.25), rgba(0, 175, 172, 0.25));
+}
+
+@utility font-book {
+  font-weight: 350;
+}
+
+/* Glas-Fläche, wie in den Antwort- und Leaderboard-Zeilen */
+@utility glass {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+html {
+  color-scheme: dark;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--color-night);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-weight: 350;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-up {
+  animation: fade-up 0.35s ease-out both;
+}
+@keyframes pop {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.animate-pop {
+  animation: pop 0.25s ease-out both;
+}
+
+@keyframes bar-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: var(--pulse-min, 0.5);
+  }
+}
+.animate-bar-pulse {
+  animation: bar-pulse var(--pulse-duration, 1s) ease-in-out infinite;
+}
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-slide-up {
+  animation: slide-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Gewinn-Pills: von unten einfaden, nach oben ausfaden */
+@keyframes pill-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pill-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+}
+.animate-pill-in {
+  animation: pill-in 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.animate-pill-out {
+  animation: pill-out 0.35s ease-in both;
+}
+
+/* ---- Competitor Workshop: Ergänzungen ---- */
+@keyframes typing {
+  0%, 80%, 100% { opacity: 0.25; transform: translateY(0); }
+  40% { opacity: 1; transform: translateY(-3px); }
+}
+.animate-typing > span { animation: typing 1.2s ease-in-out infinite; }
+.animate-typing > span:nth-child(2) { animation-delay: 0.15s; }
+.animate-typing > span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.15); }
+}
+.animate-pulse-soft { animation: pulse-soft 1.8s ease-in-out infinite; }
+
+@keyframes reveal-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-reveal { animation: reveal-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+
+textarea { field-sizing: content; }
+
+/* Dev-Leiste (nur Prototyp): Inhalt nach unten schieben */
+html.dev-bar main { padding-top: 36px; }

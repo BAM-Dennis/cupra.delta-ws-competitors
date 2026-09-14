@@ -1,0 +1,236 @@
+{
+  "id": "demo",
+  "market": "GLOBAL",
+  "workshopRef": "competitor-1",
+  "language": "en",
+  "title": "Competitor Workshop I",
+  "_note": "DEMO CONTENT. All vehicle facts, needs, differentiators and the matrix solution are placeholders and must be replaced by the official CUPRA lists.",
+  "brands": [
+    { "id": "cupra", "name": "CUPRA Delta", "short": "CUPRA", "isCupra": true, "present": true },
+    { "id": "renault-5", "name": "Renault 5 E-Tech", "short": "R5", "present": true },
+    { "id": "mini", "name": "MINI Cooper E", "short": "MINI", "present": true },
+    { "id": "peugeot", "name": "Peugeot e-208", "short": "e-208", "present": false },
+    { "id": "fiat", "name": "Fiat 500e", "short": "500e", "present": false },
+    { "id": "byd", "name": "BYD Dolphin", "short": "Dolphin", "present": false }
+  ],
+  "needs": [
+    {
+      "id": "n-range",
+      "text": "Real-world range that covers the week without charging anxiety",
+      "keywords": ["range", "km", "miles", "charging anxiety", "battery", "kwh", "long distance", "commute"]
+    },
+    {
+      "id": "n-charging",
+      "text": "Fast, uncomplicated charging on the go",
+      "keywords": ["charging", "charge", "fast charge", "dc", "minutes", "10-80", "10 to 80", "plug"]
+    },
+    {
+      "id": "n-design",
+      "text": "A design that stands out and feels like a statement",
+      "keywords": ["design", "look", "looks", "stand out", "statement", "style", "styling", "aggressive", "bold", "copper"]
+    },
+    {
+      "id": "n-practical",
+      "text": "Everyday practicality: space, boot, easy parking",
+      "keywords": ["space", "boot", "trunk", "practical", "parking", "compact", "room", "rear seats", "luggage"]
+    },
+    {
+      "id": "n-tech",
+      "text": "Seamless connectivity and a modern digital cockpit",
+      "keywords": ["connectivity", "app", "screen", "display", "cockpit", "digital", "infotainment", "carplay", "android", "software"]
+    },
+    {
+      "id": "n-dynamics",
+      "text": "Driving fun: agile handling and immediate response",
+      "keywords": ["handling", "agile", "fun", "dynamic", "dynamics", "sporty", "response", "steering", "chassis", "corner", "cornering"]
+    },
+    {
+      "id": "n-performance",
+      "text": "Performance that is felt, not just promised",
+      "keywords": ["performance", "power", "hp", "ps", "kw", "acceleration", "0-100", "torque", "fast", "quick"]
+    },
+    {
+      "id": "n-premium",
+      "text": "Premium feel and quality at a fair price",
+      "keywords": ["premium", "quality", "materials", "value", "price", "fair", "affordable", "finish", "interior"]
+    }
+  ],
+  "differentiators": [
+    {
+      "id": "d-range",
+      "text": "Up to ~450 km WLTP range in the long-range version",
+      "vsBrandIds": ["renault-5", "mini", "fiat", "peugeot"],
+      "needIds": ["n-range"],
+      "key": true,
+      "keywords": ["450", "range", "wltp", "long range", "more range", "further"]
+    },
+    {
+      "id": "d-charging",
+      "text": "DC fast charging 10–80 % in under 30 minutes",
+      "vsBrandIds": ["renault-5", "fiat", "byd"],
+      "needIds": ["n-charging", "n-range"],
+      "keywords": ["fast charging", "30 minutes", "under 30", "10-80", "10 to 80", "dc charging", "charges faster", "charging speed"]
+    },
+    {
+      "id": "d-design",
+      "text": "Distinctive CUPRA design language with copper accents and sharp lines",
+      "vsBrandIds": ["renault-5", "mini", "peugeot", "fiat", "byd"],
+      "needIds": ["n-design"],
+      "keywords": ["copper", "design language", "sharp", "lines", "distinctive", "cupra design", "triangular", "signature", "led"]
+    },
+    {
+      "id": "d-space",
+      "text": "Best-in-class rear legroom and boot for the segment",
+      "vsBrandIds": ["renault-5", "mini", "fiat"],
+      "needIds": ["n-practical"],
+      "keywords": ["legroom", "rear space", "boot", "trunk", "more space", "roomier", "bigger boot", "luggage"]
+    },
+    {
+      "id": "d-cockpit",
+      "text": "Large central display with CUPRA Connect app integration and wireless updates",
+      "vsBrandIds": ["renault-5", "fiat", "peugeot"],
+      "needIds": ["n-tech"],
+      "keywords": ["display", "screen", "cupra connect", "app", "over the air", "ota", "updates", "wireless", "infotainment"]
+    },
+    {
+      "id": "d-chassis",
+      "text": "Sport-tuned chassis with adaptive damping (DCC Sport) and progressive steering",
+      "vsBrandIds": ["renault-5", "mini", "peugeot", "fiat", "byd"],
+      "needIds": ["n-dynamics"],
+      "key": true,
+      "keywords": ["dcc", "adaptive", "damping", "dampers", "progressive steering", "sport chassis", "sport-tuned", "lower", "stiffer", "handling"]
+    },
+    {
+      "id": "d-power",
+      "text": "VZ version with 226 hp, 0–100 km/h in under 7 seconds",
+      "vsBrandIds": ["renault-5", "peugeot", "fiat", "byd"],
+      "needIds": ["n-performance"],
+      "keywords": ["226", "hp", "ps", "vz", "0-100", "under 7", "seconds", "acceleration", "more power", "powerful"]
+    },
+    {
+      "id": "d-seats",
+      "text": "CUPRA bucket seats and driver-focused interior at a lower price point than MINI",
+      "vsBrandIds": ["mini"],
+      "needIds": ["n-premium", "n-dynamics"],
+      "keywords": ["bucket seats", "sport seats", "seats", "driver-focused", "cheaper", "less expensive", "price", "value"]
+    }
+  ],
+  "rounds": [
+    {
+      "id": "r1",
+      "competitorBrandId": "renault-5",
+      "persona": {
+        "name": "Lena",
+        "tagline": "34, urban commuter, first EV",
+        "description": "Lena lives in the city and commutes 40 km a day. She wants her first electric car to feel effortless: enough range for a spontaneous weekend trip, charging that does not eat her lunch break, and a car that does not look like everyone else's.",
+        "needIds": ["n-range", "n-charging", "n-design", "n-practical"]
+      },
+      "categories": [
+        {
+          "id": "c-exterior",
+          "title": "Exterior & Design",
+          "prompts": [
+            "Compare the front: which car makes the bolder statement? Look for the CUPRA signature lights and copper details.",
+            "Walk around both cars. Where does the CUPRA use sharper lines, and how does the R5 answer with retro cues?",
+            "Check wheel sizes and stance. Which car looks planted?"
+          ]
+        },
+        {
+          "id": "c-range",
+          "title": "Range & Charging",
+          "prompts": [
+            "Find the charging port on both cars. Note the maximum DC charging power on the spec card.",
+            "Compare the WLTP range figures. What does the difference mean for Lena's weekend trip?",
+            "Look at the charging planner in the infotainment. How many steps to plan a route with a stop?"
+          ]
+        },
+        {
+          "id": "c-interior",
+          "title": "Interior & Space",
+          "prompts": [
+            "Sit in the rear of both cars behind a front seat adjusted for you. Where do your knees end up?",
+            "Open both boots. Which one takes a weekend bag plus groceries without folding seats?",
+            "Look at materials on the dashboard and door cards. Which feels more premium at eye level?"
+          ]
+        },
+        {
+          "id": "c-tech",
+          "title": "Digital Cockpit",
+          "prompts": [
+            "Pair a phone with each car. How many taps until navigation is on the screen?",
+            "Compare screen size and menu depth for the climate controls.",
+            "Ask about over-the-air updates: which car improves after purchase?"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "r2",
+      "competitorBrandId": "mini",
+      "persona": {
+        "name": "Marc",
+        "tagline": "42, enthusiast, second car for the family",
+        "description": "Marc drove hot hatches in his twenties and misses the feeling. The family car is covered, so this one is for him: it has to be fun on a back road, quick off the line, and feel special inside without costing MINI money.",
+        "needIds": ["n-dynamics", "n-performance", "n-premium", "n-design"]
+      },
+      "categories": [
+        {
+          "id": "c-chassis",
+          "title": "Chassis & Handling",
+          "prompts": [
+            "Look at the ride height and tyre profile. Which car sits lower and wider?",
+            "Ask about adaptive damping. What does DCC Sport change for Marc on a back road?",
+            "Turn the steering wheel lock to lock in both cars. Which one feels more direct?"
+          ]
+        },
+        {
+          "id": "c-performance",
+          "title": "Performance",
+          "prompts": [
+            "Compare power output and 0–100 km/h on the spec cards.",
+            "Find the drive mode selector. How quickly can Marc switch to the sportiest mode?",
+            "Which car offers a dedicated performance version?"
+          ]
+        },
+        {
+          "id": "c-seats",
+          "title": "Seats & Driver Position",
+          "prompts": [
+            "Sit in both driver seats. Which one holds you in place when you lean sideways?",
+            "Check the steering wheel: material, thickness, paddles or drive-mode buttons.",
+            "Compare the view over the bonnet. Which car feels more like a cockpit?"
+          ]
+        },
+        {
+          "id": "c-value",
+          "title": "Price & Value",
+          "prompts": [
+            "Compare the list prices on the spec cards for comparable power.",
+            "Which features are standard on the CUPRA that MINI charges extra for?",
+            "What does Marc get for the difference?"
+          ]
+        }
+      ]
+    }
+  ],
+  "matrix": {
+    "axes": {
+      "x": { "label": "Character", "low": "Rational", "high": "Emotional" },
+      "y": { "label": "Positioning", "low": "Mainstream", "high": "Premium" }
+    },
+    "positions": [
+      { "id": "p-rat-prem", "label": "Rational · Premium", "x": 0, "y": 1 },
+      { "id": "p-emo-prem", "label": "Emotional · Premium", "x": 1, "y": 1 },
+      { "id": "p-rat-main", "label": "Rational · Mainstream", "x": 0, "y": 0 },
+      { "id": "p-emo-main", "label": "Emotional · Mainstream", "x": 1, "y": 0 }
+    ],
+    "solution": {
+      "cupra": "p-emo-prem",
+      "mini": "p-emo-prem",
+      "renault-5": "p-emo-main",
+      "fiat": "p-emo-main",
+      "peugeot": "p-rat-main",
+      "byd": "p-rat-main"
+    }
+  }
+}
