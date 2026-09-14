@@ -44,17 +44,21 @@ export function Matrix({ matrix, brands, placements, mode, size = "mobile", sele
 
   return (
     <div className={`flex w-full ${big ? "gap-6" : "gap-2"}`}>
-      {/* Y-Achse */}
-      <div className={`flex shrink-0 flex-col items-center justify-between ${big ? "w-10 py-8" : "w-6 py-6"}`}>
-        <span className={`${big ? "text-[14px]" : "text-[9px]"} font-medium uppercase tracking-[1px] text-white/70`} style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>
-          {matrix.axes.y.high}
-        </span>
-        <span className={`${big ? "text-[16px]" : "text-[10px]"} font-medium uppercase tracking-[1.5px] text-teal`} style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>
-          {matrix.axes.y.label}
-        </span>
-        <span className={`${big ? "text-[14px]" : "text-[9px]"} font-medium uppercase tracking-[1px] text-white/70`} style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>
-          {matrix.axes.y.low}
-        </span>
+      {/* Y-Achse: Achsenname und Pole in getrennten Spalten, damit lange Labels nicht kollidieren */}
+      <div className={`flex shrink-0 ${big ? "gap-2" : "gap-1"}`}>
+        <div className={`flex items-center justify-center ${big ? "w-6" : "w-4"}`}>
+          <span className={`${big ? "text-[16px]" : "text-[10px]"} whitespace-nowrap font-medium uppercase tracking-[1.5px] text-teal`} style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>
+            {matrix.axes.y.label}
+          </span>
+        </div>
+        <div className={`flex flex-col items-center justify-between ${big ? "w-6 py-6" : "w-4 py-4"}`}>
+          <span className={`${big ? "text-[14px]" : "text-[9px]"} whitespace-nowrap font-medium uppercase tracking-[1px] text-white/70`} style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>
+            {matrix.axes.y.high}
+          </span>
+          <span className={`${big ? "text-[14px]" : "text-[9px]"} whitespace-nowrap font-medium uppercase tracking-[1px] text-white/70`} style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>
+            {matrix.axes.y.low}
+          </span>
+        </div>
       </div>
 
       <div className="flex min-w-0 flex-1 flex-col">

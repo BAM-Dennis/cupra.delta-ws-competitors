@@ -46,7 +46,7 @@ Ziel: alle Screens des Teilnehmer-Flows und die Trainer-Leinwand mit Demo-Inhalt
 
 **Gerüst**
 - [x] `create-next-app` (TypeScript, App Router, Tailwind, ESLint, `src/`), Bausteine aus Abschnitt 2 kopieren
-- [x] `src/data/config/demo.json` mit Demo-Inhalt: 2 Runden mit je eigener Persona und je einem Wettbewerber, 4 Erkundungs-Kategorien mit Prompts, Differenzierungs- und Need-Liste, Matrix mit zwei Achsen, 6 Marken (4 anwesend, 2 nicht), Lösungsschlüssel. Fachlich Platzhalter, klar als solche markiert (Abschnitt 8)
+- [x] `src/data/config/demo.json` mit Demo-Inhalt. **Seit 14.09.2026 mit dem SAPERED-Seed-Content** ([SAPERED_Workshop-App_SeedContent_CompI.md](SAPERED_Workshop-App_SeedContent_CompI.md)): Paula gegen Volvo EX30, Tom gegen Alfa Romeo Junior, je zwei Show-Kategorien, sieben erkundbare Differenzierer, fünf Tell-Fakten für den Trainer-Outro, Matrix mit der geschärften Achse „Brand stance“ von Established (inklusive Retro und Heritage) bis Challenger (zeitgenössisch), damit der CUPRA allein im Feld „Emotional · Challenger“ steht, acht Marken (drei im Raum). Fachlich Platzhalter, final von CUPRA
 - [x] `src/engine/config.ts` (Konstanten, Abschnitt 9), `src/engine/types.ts`, `src/engine/configSchema.ts` (zod-Schema, validiert die JSON beim Import)
 - [x] `src/engine/scoring.ts`: `pointsForArgument(evaluation)`, `pointsForMatrix(placements, solution, brands)`, `totalScore(...)` mit Unit-Tests
 - [x] `src/engine/session.ts`: Zustandsmaschine (Abschnitt 4) als Reducer mit `NEXT`-Event, Unit-Test für die komplette Phasenfolge
@@ -362,7 +362,7 @@ Validierung mit `zod`, Phasenprüfung serverseitig (Argument nur in `argue` der 
 }
 ```
 
-`keywords` nutzt nur der `keywordScorer`; der `llmScorer` bekommt `text`, `needIds` und `vsBrandIds`. Das zod-Schema prüft Referenzen (jede `needId`, `brandId`, `positionId` existiert, jede Marke hat eine Lösung, jede Runde hat mindestens eine Kategorie). Die Demo-Inhalte sind fachliche Platzhalter, die echten Listen kommen von CUPRA (Briefing Abschnitt 11).
+`keywords` nutzt nur der `keywordScorer`; der `llmScorer` bekommt `text`, `needIds` und `vsBrandIds`. Differenzierer tragen ein `tag`: `show` ist am stehenden Auto erkundbar und zählt im Scoring, `tell` (Reichweite, Preis, Ladezeit) zählt nicht und erscheint als `outro.facts` auf der Leinwand beim Leaderboard, als Stichworte für das Schlusswort des Trainers. Das zod-Schema prüft Referenzen (jede `needId`, `brandId`, `positionId` existiert, jede Marke hat eine Lösung, jede Runde hat mindestens eine Kategorie). Die Demo-Inhalte sind fachliche Platzhalter, die echten Listen kommen von CUPRA (Briefing Abschnitt 11).
 
 Die Matrix ist bewusst als Liste von Positionen mit Koordinaten modelliert statt als festes 2x2. Damit sind 2x2, 3x3 oder ein Raster mit Zwischenstufen dieselbe Komponente.
 
@@ -414,6 +414,19 @@ Maximal 3 Punkte pro Argument, 9 pro Runde, 18 aus zwei Runden, plus Matrix (bei
 6. **Konfigurations-Snapshot pro Session.** Eine laufende Session ändert sich nicht, auch wenn die JSON angepasst wird. Kostet eine `jsonb`-Spalte, spart Inkonsistenzen.
 7. **Trainer-Schutz nur per PIN.** Authentifizierung ist laut Briefing nicht im Umfang. Die PIN verhindert Versehen, nicht Angriffe.
 8. **Modellwahl.** Der Plan setzt `claude-opus-5` als Konstante. Ein günstigeres Modell ist eine bewusste Entscheidung des Auftraggebers und im Code ein Einzeiler, der Eval-Satz zeigt dann sofort, ob die Qualität hält.
+
+---
+
+## 11a. Offene Design-Entscheidungen aus dem Feedback (14.09.2026)
+
+**Weniger Trainer-Klicks im Runden-Ablauf.** Der separate Schritt „Send to the cars“ (Phase `explore`) soll entfallen. Teilnehmer lesen die Persona und legen direkt los. Optional entscheiden sie selbst, wann sie zur Argument-Eingabe wechseln, der Trainer gibt nur noch Runde 2 und am Ende die Matrix frei. Details werden später festgelegt.
+
+Was das technisch bedeutet, falls es so kommt:
+
+- Die Phasenfolge pro Runde schrumpft von `persona → explore → argue` auf eine Phase `round`, in der Persona, Kategorien und Argument-Eingabe auf einem Screen liegen (Persona oben, Kategorien aufklappbar, Eingabe darunter oder per Tab). Trainer-Klicks pro Workshop: Start, Runde 2, Matrix, Auflösung, Leaderboard.
+- Der Teilnehmer-Fortschritt innerhalb der Runde (liest, erkundet, gibt ein) wird zum Teilnehmer-Zustand, nicht zum Session-Zustand. Der Trainer sieht ihn auf der Leinwand als Verteilung („14 erkunden, 8 tippen, 2 fertig“).
+- Reducer und Konfiguration sind dafür bereits generisch genug, die Änderung liegt in `phaseSequence` und in einem zusammengelegten Screen. Aufwand im Prototyp ca. 0,5 Tag.
+- Gegenläufiger Effekt: Ohne getaktete Erkundung tippen die Schnellen früh, während die Langsamen noch am Auto stehen. Das Briefing wollte die App in der Erkundung bewusst passiv halten (B3). Mit SAPERED klären, ob das gewollt ist oder ob eine Mindest-Erkundungszeit (Eingabe erst nach n Minuten frei) sinnvoll ist.
 
 ---
 

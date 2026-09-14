@@ -257,7 +257,15 @@ export function RevealView({ config }: { config: WorkshopConfig }) {
 
 /* ---------------- Leaderboard ---------------- */
 
-export function LeaderboardView({ leaderboard, ended }: { leaderboard: { top: LeaderboardEntry[]; all: LeaderboardEntry[] }; ended: boolean }) {
+export function LeaderboardView({
+  leaderboard,
+  ended,
+  outro,
+}: {
+  leaderboard: { top: LeaderboardEntry[]; all: LeaderboardEntry[] };
+  ended: boolean;
+  outro?: { title: string; facts: string[] };
+}) {
   const [first, ...rest] = leaderboard.top;
   return (
     <div className="grid flex-1 grid-cols-[1fr_1.2fr] gap-16">
@@ -277,6 +285,19 @@ export function LeaderboardView({ leaderboard, ended }: { leaderboard: { top: Le
                 {first.score} <span className="text-[18px] text-white/60">pts</span>
               </span>
             </div>
+          </div>
+        )}
+        {outro && (
+          <div className="mt-2 flex flex-col gap-3 rounded-[10px] border border-white/10 bg-white/5 p-6">
+            <span className="text-[13px] font-medium uppercase tracking-[2px] text-copper-light">{outro.title}</span>
+            <ul className="flex flex-col gap-2">
+              {outro.facts.map((f) => (
+                <li key={f} className="flex gap-3 text-[17px] leading-[1.35] text-white/85">
+                  <span className="mt-[9px] size-1.5 shrink-0 rounded-full bg-copper-light" />
+                  {f}
+                </li>
+              ))}
+            </ul>
           </div>
         )}
         <p className={`${SUB} mt-auto`}>Points are saved to each participant ID and add up over the training series.</p>

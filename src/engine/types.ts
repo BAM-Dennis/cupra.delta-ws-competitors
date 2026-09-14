@@ -19,6 +19,8 @@ export interface Need {
 
 export interface Differentiator {
   id: string;
+  /** show: am stehenden Auto erkundbar, zählt im Scoring. tell: Trainer-Outro, zählt nicht. Default show. */
+  tag?: "show" | "tell";
   text: string;
   /** Gegen welche Wettbewerber gilt der Differenzierer? */
   vsBrandIds: string[];
@@ -82,6 +84,8 @@ export interface WorkshopConfig {
   differentiators: Differentiator[];
   rounds: Round[];
   matrix: MatrixConfig;
+  /** Tell-Fakten für das Schlusswort des Trainers auf der Leinwand */
+  outro?: { title: string; facts: string[] };
 }
 
 /* ---------- Session ---------- */

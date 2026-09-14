@@ -45,7 +45,7 @@ export function TrainerApp({ code }: { code: string }) {
       break;
     case "leaderboard":
     case "ended":
-      view = <LeaderboardView leaderboard={leaderboard} ended={state.phase === "ended"} />;
+      view = <LeaderboardView leaderboard={leaderboard} ended={state.phase === "ended"} outro={config.outro} />;
       break;
   }
 

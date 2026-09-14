@@ -37,7 +37,7 @@ describe("scoreMatrix", () => {
       [
         { brandId: "cupra", positionId: cfg.matrix.solution.cupra },
         { brandId: "mini", positionId: cfg.matrix.solution.mini },
-        { brandId: "renault-5", positionId: "p-rat-prem" },
+        { brandId: "renault-5", positionId: "p-rat-chal" },
       ],
       cfg.matrix,
       cfg.brands,

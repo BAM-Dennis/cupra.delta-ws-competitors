@@ -40,8 +40,9 @@ export function evaluateByKeywords(config: WorkshopConfig, round: number, text: 
   const r = config.rounds[round];
   const norm = normalize(text);
   const personaNeeds: Need[] = config.needs.filter((n) => r.persona.needIds.includes(n.id));
-  const relevantDiffs: Differentiator[] = config.differentiators.filter((d) =>
-    d.vsBrandIds.includes(r.competitorBrandId),
+  // Nur erkundbare (show) Differenzierer gegen genau diesen Wettbewerber zählen
+  const relevantDiffs: Differentiator[] = config.differentiators.filter(
+    (d) => d.tag !== "tell" && d.vsBrandIds.includes(r.competitorBrandId),
   );
 
   const diff = best(norm, relevantDiffs);

@@ -12,6 +12,17 @@ describe("Demo-Konfiguration", () => {
     expect(cfg.rounds[0].competitorBrandId).not.toBe(cfg.rounds[1].competitorBrandId);
     expect(cfg.rounds[0].persona.name).not.toBe(cfg.rounds[1].persona.name);
   });
+  it("hat nur erkundbare Kategorien und Tell-Fakten im Outro", () => {
+    const cfg = parseWorkshopConfig(demo);
+    cfg.rounds.forEach((r) => expect(r.categories).toHaveLength(2));
+    expect(cfg.outro?.facts.length).toBeGreaterThan(0);
+    expect(cfg.differentiators.filter((d) => d.tag === "tell").length).toBe(5);
+  });
+  it("CUPRA steht allein in seinem Matrix-Feld", () => {
+    const cfg = parseWorkshopConfig(demo);
+    const cupraCell = cfg.matrix.solution.cupra;
+    expect(Object.values(cfg.matrix.solution).filter((p) => p === cupraCell)).toHaveLength(1);
+  });
   it("erkennt fehlende Lösungen und fremde Referenzen", () => {
     const broken = structuredClone(demo);
     Reflect.deleteProperty(broken.matrix.solution, "cupra");

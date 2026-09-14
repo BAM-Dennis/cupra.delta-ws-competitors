@@ -2,7 +2,7 @@
 
 Workshop-App für das CUPRA Global Launch Training, Workshop „Competitor I“. Teilnehmer erkunden per Smartphone die Fahrzeuge, formulieren Verkaufsargumente gegen den Wettbewerb, bekommen Coaching-Feedback und Punkte, ordnen die Marken in der Positionierungs-Matrix zu. Der Trainer steuert die Session und präsentiert Matrix und Leaderboard auf der Leinwand.
 
-Konzept: [SAPERED_Workshop-App_Konzept_Aufwandsschaetzung.md](SAPERED_Workshop-App_Konzept_Aufwandsschaetzung.md) · Plan: [umsetzungsplan.md](umsetzungsplan.md)
+Konzept: [SAPERED_Workshop-App_Konzept_Aufwandsschaetzung.md](SAPERED_Workshop-App_Konzept_Aufwandsschaetzung.md) · Seed-Content: [SAPERED_Workshop-App_SeedContent_CompI.md](SAPERED_Workshop-App_SeedContent_CompI.md) · Plan: [umsetzungsplan.md](umsetzungsplan.md)
 
 ## Stand: Phase 0, Klick-Prototyp
 
@@ -48,7 +48,7 @@ Demo zurücksetzen: „Reset“ in der Trainer-Steuerleiste oder das Reset-Symbo
 
 - `src/engine/` – reine Funktionen: Konstanten (`config.ts`), Typen, zod-Schema der Konfiguration, Punktevergabe (`scoring.ts`), Session-Zustandsmaschine (`session.ts`).
 - `src/scoring/` – `Scorer`-Interface und `keywordScorer`. Der `llmScorer` (Phase 2) implementiert dasselbe Interface.
-- `src/data/config/demo.json` – Demo-Konfiguration: Marken, Needs, Differenzierer, zwei Runden mit Persona und Kategorien, Matrix mit Lösungsschlüssel. **Fachliche Platzhalter**, die echten Listen kommen von CUPRA.
+- `src/data/config/demo.json` – Konfiguration mit dem SAPERED-Seed-Content (Paula vs Volvo EX30, Tom vs Alfa Romeo Junior): Marken, Needs, Differenzierer mit Tag `show`/`tell`, zwei Runden mit Persona und je zwei Show-Kategorien, Matrix mit Lösungsschlüssel, Outro-Fakten für den Trainer. **Fachliche Platzhalter**, final von CUPRA.
 - `src/components/participant/` – Teilnehmer-Screens, `ParticipantApp.tsx` schaltet nach Phase.
 - `src/components/trainer/` – Leinwand: `TrainerApp.tsx` (Kopf, Steuerleiste, Phasen-Stepper) und `views.tsx`.
 - `src/components/shared/` – `Matrix.tsx` (eine Komponente für App und Leinwand), Leaderboard, UI-Bausteine, Hintergründe und Icons aus der Streak Challenge.

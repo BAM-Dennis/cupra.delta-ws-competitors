@@ -4,211 +4,183 @@
   "workshopRef": "competitor-1",
   "language": "en",
   "title": "Competitor Workshop I",
-  "_note": "DEMO CONTENT. All vehicle facts, needs, differentiators and the matrix solution are placeholders and must be replaced by the official CUPRA lists.",
+  "_note": "Seed content by SAPERED (14.09.2026), grounded on public CUPRA Raval research. Placeholder until CUPRA confirms. Physical competitors in the room: Volvo EX30 and Alfa Romeo Junior. Categories are show-only; range, price and charging are tell and live in the trainer outro. Note for the LLM scorer: design arguments against the Alfa are Alfa's home turf and should be scored weaker.",
   "brands": [
     { "id": "cupra", "name": "CUPRA Delta", "short": "CUPRA", "isCupra": true, "present": true },
-    { "id": "renault-5", "name": "Renault 5 E-Tech", "short": "R5", "present": true },
-    { "id": "mini", "name": "MINI Cooper E", "short": "MINI", "present": true },
-    { "id": "peugeot", "name": "Peugeot e-208", "short": "e-208", "present": false },
+    { "id": "volvo-ex30", "name": "Volvo EX30", "short": "EX30", "present": true },
+    { "id": "alfa-junior", "name": "Alfa Romeo Junior", "short": "Junior", "present": true },
+    { "id": "mini", "name": "MINI Cooper E", "short": "MINI", "present": false },
     { "id": "fiat", "name": "Fiat 500e", "short": "500e", "present": false },
+    { "id": "renault-5", "name": "Renault 5 E-Tech", "short": "R5", "present": false },
+    { "id": "peugeot", "name": "Peugeot e-208", "short": "e-208", "present": false },
     { "id": "byd", "name": "BYD Dolphin", "short": "Dolphin", "present": false }
   ],
   "needs": [
     {
-      "id": "n-range",
-      "text": "Real-world range that covers the week without charging anxiety",
-      "keywords": ["range", "km", "miles", "charging anxiety", "battery", "kwh", "long distance", "commute"]
+      "id": "n-family-kit",
+      "text": "Fits the family kit: buggy plus the weekly shop",
+      "keywords": ["buggy", "stroller", "pram", "pushchair", "weekly shop", "shopping", "groceries", "boot", "trunk", "luggage", "load", "family kit", "fits", "fit everything"]
     },
     {
-      "id": "n-charging",
-      "text": "Fast, uncomplicated charging on the go",
-      "keywords": ["charging", "charge", "fast charge", "dc", "minutes", "10-80", "10 to 80", "plug"]
+      "id": "n-rear-room",
+      "text": "Roomy in the back: space for a grandparent next to the child seat, easy child-seat access",
+      "keywords": ["back seat", "rear", "in the back", "child seat", "grandparent", "grandma", "grandpa", "roomy", "room in the back", "legroom", "door opening", "access", "isofix", "get in"]
     },
     {
-      "id": "n-design",
-      "text": "A design that stands out and feels like a statement",
-      "keywords": ["design", "look", "looks", "stand out", "statement", "style", "styling", "aggressive", "bold", "copper"]
+      "id": "n-tech-works",
+      "text": "Tech that just works on the move, without fighting menus",
+      "keywords": ["tech", "screen", "menu", "menus", "infotainment", "controls", "buttons", "without looking", "on the move", "easy to use", "intuitive", "just works", "in traffic", "distraction", "eyes on the road"]
     },
     {
-      "id": "n-practical",
-      "text": "Everyday practicality: space, boot, easy parking",
-      "keywords": ["space", "boot", "trunk", "practical", "parking", "compact", "room", "rear seats", "luggage"]
-    },
-    {
-      "id": "n-tech",
-      "text": "Seamless connectivity and a modern digital cockpit",
-      "keywords": ["connectivity", "app", "screen", "display", "cockpit", "digital", "infotainment", "carplay", "android", "software"]
-    },
-    {
-      "id": "n-dynamics",
-      "text": "Driving fun: agile handling and immediate response",
-      "keywords": ["handling", "agile", "fun", "dynamic", "dynamics", "sporty", "response", "steering", "chassis", "corner", "cornering"]
-    },
-    {
-      "id": "n-performance",
-      "text": "Performance that is felt, not just promised",
-      "keywords": ["performance", "power", "hp", "ps", "kw", "acceleration", "0-100", "torque", "fast", "quick"]
-    },
-    {
-      "id": "n-premium",
-      "text": "Premium feel and quality at a fair price",
-      "keywords": ["premium", "quality", "materials", "value", "price", "fair", "affordable", "finish", "interior"]
+      "id": "n-comfort",
+      "text": "Comfortable and not tiring over a long commute, with good visibility",
+      "keywords": ["comfort", "comfortable", "tiring", "fatigue", "commute", "two hours", "long day", "seat", "seating", "position", "support", "visibility", "ergonomic", "ergonomics", "relaxed"]
     }
   ],
   "differentiators": [
     {
-      "id": "d-range",
-      "text": "Up to ~450 km WLTP range in the long-range version",
-      "vsBrandIds": ["renault-5", "mini", "fiat", "peugeot"],
-      "needIds": ["n-range"],
+      "id": "d-boot",
+      "tag": "show",
+      "text": "Class-leading boot, around 441 litres, flat load floor, folding rear seats",
+      "vsBrandIds": ["volvo-ex30", "alfa-junior", "mini", "fiat", "renault-5", "peugeot"],
+      "needIds": ["n-family-kit"],
       "key": true,
-      "keywords": ["450", "range", "wltp", "long range", "more range", "further"]
+      "keywords": ["441", "litres", "liters", "boot", "trunk", "flat floor", "load floor", "flat load", "folding", "fold the seats", "fold down", "bigger boot", "more boot"]
+    },
+    {
+      "id": "d-cabin",
+      "tag": "show",
+      "text": "Spacious cabin, long 2599 mm wheelbase, real rear-seat room",
+      "vsBrandIds": ["volvo-ex30", "mini", "fiat", "renault-5", "peugeot"],
+      "needIds": ["n-rear-room"],
+      "key": true,
+      "keywords": ["wheelbase", "2599", "rear seat room", "rear room", "rear space", "spacious", "cabin", "legroom", "roomier", "more space in the back", "knee room"]
+    },
+    {
+      "id": "d-doors",
+      "tag": "show",
+      "text": "Wide door openings and easy child-seat access",
+      "vsBrandIds": ["volvo-ex30", "alfa-junior", "mini", "fiat", "renault-5"],
+      "needIds": ["n-rear-room"],
+      "keywords": ["door opening", "door openings", "wide doors", "wide opening", "child seat", "isofix", "easy access", "get the seat in", "lift the child", "climb in"]
+    },
+    {
+      "id": "d-screen",
+      "tag": "show",
+      "text": "12.9-inch responsive infotainment plus a sporty digital cockpit",
+      "vsBrandIds": ["alfa-junior", "volvo-ex30", "fiat", "renault-5", "peugeot"],
+      "needIds": ["n-tech-works"],
+      "key": true,
+      "keywords": ["12.9", "12,9", "inch screen", "big screen", "large screen", "infotainment", "digital cockpit", "responsive", "fast menus", "quick menus", "display", "clear menus"]
+    },
+    {
+      "id": "d-controls",
+      "tag": "show",
+      "text": "Physical steering-wheel and cabin controls, usable without looking",
+      "vsBrandIds": ["alfa-junior", "volvo-ex30", "fiat", "peugeot"],
+      "needIds": ["n-tech-works"],
+      "keywords": ["physical controls", "physical buttons", "real buttons", "buttons", "steering wheel controls", "steering wheel", "wheel buttons", "without looking", "knobs", "haptic", "eyes on the road"]
+    },
+    {
+      "id": "d-seating",
+      "tag": "show",
+      "text": "Driver-focused seating position with good support",
+      "vsBrandIds": ["alfa-junior", "volvo-ex30", "mini", "fiat", "renault-5", "peugeot", "byd"],
+      "needIds": ["n-comfort"],
+      "key": true,
+      "keywords": ["seating position", "driving position", "seat position", "support", "supportive", "driver-focused", "driver focused", "visibility", "ergonomics", "hold you", "long drives", "sit well"]
+    },
+    {
+      "id": "d-materials",
+      "tag": "show",
+      "text": "Solid material quality and finish at the touch points",
+      "vsBrandIds": ["alfa-junior", "volvo-ex30", "fiat", "renault-5", "peugeot", "byd"],
+      "needIds": ["n-comfort"],
+      "keywords": ["material", "materials", "quality", "finish", "touch points", "soft touch", "build quality", "solid", "well made", "feels premium"]
+    },
+    {
+      "id": "d-efficiency",
+      "tag": "tell",
+      "text": "Best-in-class efficiency, around 161 Wh/km, low running cost",
+      "vsBrandIds": ["volvo-ex30", "alfa-junior"],
+      "needIds": ["n-comfort"],
+      "keywords": ["efficiency", "wh/km", "161", "running cost", "consumption"]
+    },
+    {
+      "id": "d-price",
+      "tag": "tell",
+      "text": "Entry price around 26,000 euros",
+      "vsBrandIds": ["volvo-ex30", "alfa-junior"],
+      "needIds": ["n-family-kit"],
+      "keywords": ["price", "26,000", "26000", "euros", "cheaper", "affordable"]
+    },
+    {
+      "id": "d-range",
+      "tag": "tell",
+      "text": "Real range around 310 km, up to about 446 km WLTP on the larger battery",
+      "vsBrandIds": ["volvo-ex30", "alfa-junior"],
+      "needIds": ["n-comfort"],
+      "keywords": ["range", "446", "310", "wltp", "km"]
     },
     {
       "id": "d-charging",
-      "text": "DC fast charging 10–80 % in under 30 minutes",
-      "vsBrandIds": ["renault-5", "fiat", "byd"],
-      "needIds": ["n-charging", "n-range"],
-      "keywords": ["fast charging", "30 minutes", "under 30", "10-80", "10 to 80", "dc charging", "charges faster", "charging speed"]
+      "tag": "tell",
+      "text": "DC charging 10 to 80 percent in around 24 minutes",
+      "vsBrandIds": ["volvo-ex30", "alfa-junior"],
+      "needIds": ["n-comfort"],
+      "keywords": ["charging", "24 minutes", "10 to 80", "10-80", "dc"]
     },
     {
-      "id": "d-design",
-      "text": "Distinctive CUPRA design language with copper accents and sharp lines",
-      "vsBrandIds": ["renault-5", "mini", "peugeot", "fiat", "byd"],
-      "needIds": ["n-design"],
-      "keywords": ["copper", "design language", "sharp", "lines", "distinctive", "cupra design", "triangular", "signature", "led"]
-    },
-    {
-      "id": "d-space",
-      "text": "Best-in-class rear legroom and boot for the segment",
-      "vsBrandIds": ["renault-5", "mini", "fiat"],
-      "needIds": ["n-practical"],
-      "keywords": ["legroom", "rear space", "boot", "trunk", "more space", "roomier", "bigger boot", "luggage"]
-    },
-    {
-      "id": "d-cockpit",
-      "text": "Large central display with CUPRA Connect app integration and wireless updates",
-      "vsBrandIds": ["renault-5", "fiat", "peugeot"],
-      "needIds": ["n-tech"],
-      "keywords": ["display", "screen", "cupra connect", "app", "over the air", "ota", "updates", "wireless", "infotainment"]
-    },
-    {
-      "id": "d-chassis",
-      "text": "Sport-tuned chassis with adaptive damping (DCC Sport) and progressive steering",
-      "vsBrandIds": ["renault-5", "mini", "peugeot", "fiat", "byd"],
-      "needIds": ["n-dynamics"],
-      "key": true,
-      "keywords": ["dcc", "adaptive", "damping", "dampers", "progressive steering", "sport chassis", "sport-tuned", "lower", "stiffer", "handling"]
-    },
-    {
-      "id": "d-power",
-      "text": "VZ version with 226 hp, 0–100 km/h in under 7 seconds",
-      "vsBrandIds": ["renault-5", "peugeot", "fiat", "byd"],
-      "needIds": ["n-performance"],
-      "keywords": ["226", "hp", "ps", "vz", "0-100", "under 7", "seconds", "acceleration", "more power", "powerful"]
-    },
-    {
-      "id": "d-seats",
-      "text": "CUPRA bucket seats and driver-focused interior at a lower price point than MINI",
-      "vsBrandIds": ["mini"],
-      "needIds": ["n-premium", "n-dynamics"],
-      "keywords": ["bucket seats", "sport seats", "seats", "driver-focused", "cheaper", "less expensive", "price", "value"]
+      "id": "d-v2l",
+      "tag": "tell",
+      "text": "V2L, powers devices from the car",
+      "vsBrandIds": ["volvo-ex30", "alfa-junior"],
+      "needIds": ["n-family-kit"],
+      "keywords": ["v2l", "vehicle to load", "power devices", "plug in"]
     }
   ],
   "rounds": [
     {
       "id": "r1",
-      "competitorBrandId": "renault-5",
+      "competitorBrandId": "volvo-ex30",
       "persona": {
-        "name": "Lena",
-        "tagline": "34, urban commuter, first EV",
-        "description": "Lena lives in the city and commutes 40 km a day. She wants her first electric car to feel effortless: enough range for a spontaneous weekend trip, charging that does not eat her lunch break, and a car that does not look like everyone else's.",
-        "needIds": ["n-range", "n-charging", "n-design", "n-practical"]
+        "name": "Paula",
+        "tagline": "34, lives in the city with her partner and a two-year-old",
+        "description": "I've got a two-year-old, a buggy in the boot and the weekly shop to fit in. Sometimes a grandparent rides in the back next to the child seat. My old car is just too small for it. I need one that swallows the family kit and stays roomy in the back.",
+        "needIds": ["n-family-kit", "n-rear-room"]
       },
       "categories": [
         {
-          "id": "c-exterior",
-          "title": "Exterior & Design",
-          "prompts": [
-            "Compare the front: which car makes the bolder statement? Look for the CUPRA signature lights and copper details.",
-            "Walk around both cars. Where does the CUPRA use sharper lines, and how does the R5 answer with retro cues?",
-            "Check wheel sizes and stance. Which car looks planted?"
-          ]
+          "id": "c-space",
+          "title": "Space & Load",
+          "prompts": ["Open the boot: does the buggy plus the weekly shop fit?", "Fold the seats, check the load floor and storage."]
         },
         {
-          "id": "c-range",
-          "title": "Range & Charging",
-          "prompts": [
-            "Find the charging port on both cars. Note the maximum DC charging power on the spec card.",
-            "Compare the WLTP range figures. What does the difference mean for Lena's weekend trip?",
-            "Look at the charging planner in the infotainment. How many steps to plan a route with a stop?"
-          ]
-        },
-        {
-          "id": "c-interior",
-          "title": "Interior & Space",
-          "prompts": [
-            "Sit in the rear of both cars behind a front seat adjusted for you. Where do your knees end up?",
-            "Open both boots. Which one takes a weekend bag plus groceries without folding seats?",
-            "Look at materials on the dashboard and door cards. Which feels more premium at eye level?"
-          ]
-        },
-        {
-          "id": "c-tech",
-          "title": "Digital Cockpit",
-          "prompts": [
-            "Pair a phone with each car. How many taps until navigation is on the screen?",
-            "Compare screen size and menu depth for the climate controls.",
-            "Ask about over-the-air updates: which car improves after purchase?"
-          ]
+          "id": "c-access",
+          "title": "Interior & Access",
+          "prompts": ["Sit in front and back. How much room is left behind a front seat set for you?", "Get a child seat in and out, check the door openings and rear room."]
         }
       ]
     },
     {
       "id": "r2",
-      "competitorBrandId": "mini",
+      "competitorBrandId": "alfa-junior",
       "persona": {
-        "name": "Marc",
-        "tagline": "42, enthusiast, second car for the family",
-        "description": "Marc drove hot hatches in his twenties and misses the feeling. The family car is covered, so this one is for him: it has to be fun on a back road, quick off the line, and feel special inside without costing MINI money.",
-        "needIds": ["n-dynamics", "n-performance", "n-premium", "n-design"]
+        "name": "Tom",
+        "tagline": "29, commutes almost two hours a day, first new car, tech-savvy",
+        "description": "I spend nearly two hours a day in the car. I want it to feel good to sit in, easy to use on the move, and not tiring on a long day. The tech has to just work, I don't want to fight with menus in traffic.",
+        "needIds": ["n-tech-works", "n-comfort"]
       },
       "categories": [
         {
-          "id": "c-chassis",
-          "title": "Chassis & Handling",
-          "prompts": [
-            "Look at the ride height and tyre profile. Which car sits lower and wider?",
-            "Ask about adaptive damping. What does DCC Sport change for Marc on a back road?",
-            "Turn the steering wheel lock to lock in both cars. Which one feels more direct?"
-          ]
+          "id": "c-tech",
+          "title": "Tech & Interaction",
+          "prompts": ["Try the 12.9-inch screen and the digital cockpit. How fast and clear are the menus?", "Reach the key controls without looking. Which ones are physical?"]
         },
         {
-          "id": "c-performance",
-          "title": "Performance",
-          "prompts": [
-            "Compare power output and 0–100 km/h on the spec cards.",
-            "Find the drive mode selector. How quickly can Marc switch to the sportiest mode?",
-            "Which car offers a dedicated performance version?"
-          ]
-        },
-        {
-          "id": "c-seats",
-          "title": "Seats & Driver Position",
-          "prompts": [
-            "Sit in both driver seats. Which one holds you in place when you lean sideways?",
-            "Check the steering wheel: material, thickness, paddles or drive-mode buttons.",
-            "Compare the view over the bonnet. Which car feels more like a cockpit?"
-          ]
-        },
-        {
-          "id": "c-value",
-          "title": "Price & Value",
-          "prompts": [
-            "Compare the list prices on the spec cards for comparable power.",
-            "Which features are standard on the CUPRA that MINI charges extra for?",
-            "What does Marc get for the difference?"
-          ]
+          "id": "c-ergonomics",
+          "title": "Ergonomics & Comfort",
+          "prompts": ["Take the driving seat: position, support, visibility.", "Would this feel right after two hours?"]
         }
       ]
     }
@@ -216,21 +188,33 @@
   "matrix": {
     "axes": {
       "x": { "label": "Character", "low": "Rational", "high": "Emotional" },
-      "y": { "label": "Positioning", "low": "Mainstream", "high": "Premium" }
+      "y": { "label": "Brand stance", "low": "Established", "high": "Challenger" }
     },
     "positions": [
-      { "id": "p-rat-prem", "label": "Rational · Premium", "x": 0, "y": 1 },
-      { "id": "p-emo-prem", "label": "Emotional · Premium", "x": 1, "y": 1 },
-      { "id": "p-rat-main", "label": "Rational · Mainstream", "x": 0, "y": 0 },
-      { "id": "p-emo-main", "label": "Emotional · Mainstream", "x": 1, "y": 0 }
+      { "id": "p-rat-chal", "label": "Rational · Challenger", "x": 0, "y": 1 },
+      { "id": "p-emo-chal", "label": "Emotional · Challenger", "x": 1, "y": 1 },
+      { "id": "p-rat-est", "label": "Rational · Established", "x": 0, "y": 0 },
+      { "id": "p-emo-est", "label": "Emotional · Established", "x": 1, "y": 0 }
     ],
     "solution": {
-      "cupra": "p-emo-prem",
-      "mini": "p-emo-prem",
-      "renault-5": "p-emo-main",
-      "fiat": "p-emo-main",
-      "peugeot": "p-rat-main",
-      "byd": "p-rat-main"
+      "cupra": "p-emo-chal",
+      "alfa-junior": "p-emo-est",
+      "mini": "p-emo-est",
+      "fiat": "p-emo-est",
+      "renault-5": "p-emo-est",
+      "volvo-ex30": "p-rat-est",
+      "peugeot": "p-rat-est",
+      "byd": "p-rat-chal"
     }
+  },
+  "outro": {
+    "title": "For your wrap-up: what the room could not see",
+    "facts": [
+      "Best-in-class efficiency, around 161 Wh/km, low running cost",
+      "Entry price around 26,000 euros",
+      "Real range around 310 km, up to about 446 km WLTP on the larger battery",
+      "DC charging 10 to 80 percent in around 24 minutes",
+      "V2L: powers devices from the car"
+    ]
   }
 }
