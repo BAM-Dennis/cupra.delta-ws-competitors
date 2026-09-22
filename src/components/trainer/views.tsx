@@ -10,6 +10,7 @@ import { useClientValue } from "@/lib/useClientValue";
 import { Bar, BigStat, Chip, Glyph } from "../shared/bits";
 import { LeaderboardList } from "../shared/LeaderboardList";
 import { BrandChip, Matrix } from "../shared/Matrix";
+import { PersonaAvatar } from "../shared/PersonaAvatar";
 
 const H = "text-[44px] font-light leading-none";
 const SUB = "text-[18px] leading-[1.4] text-white/70";
@@ -71,7 +72,7 @@ export function PersonaView({ config, round }: { config: WorkshopConfig; round: 
       <div className="flex flex-col gap-6">
         <RoundTag round={round} total={config.rounds.length} />
         <div className="flex items-center gap-6">
-          <div className="flex size-24 items-center justify-center rounded-full bg-copper-gradient text-[40px] font-medium">{r.persona.name[0]}</div>
+          <PersonaAvatar name={r.persona.name} image={r.persona.image} size="lg" />
           <div>
             <h1 className={H}>{r.persona.name}</h1>
             {r.persona.tagline && <p className="mt-2 text-[20px] text-white/60">{r.persona.tagline}</p>}

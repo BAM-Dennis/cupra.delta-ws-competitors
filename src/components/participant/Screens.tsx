@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { WorkshopConfig } from "@/engine/types";
 import type { Participant } from "@/lib/participant";
 import { Chip, Glyph } from "../shared/bits";
+import { PersonaAvatar } from "../shared/PersonaAvatar";
 import { Overline, Panel } from "../shared/ui";
 
 /* ------------------------------------------------------------------ */
@@ -43,14 +44,22 @@ export function PersonaScreen({ config, round }: { config: WorkshopConfig; round
   const needs = config.needs.filter((n) => r.persona.needIds.includes(n.id));
   return (
     <div className="flex flex-col gap-5 pt-6">
-      <Panel className="animate-fade-up">
+      <Panel className="animate-fade-up overflow-hidden">
+        {r.persona.image && (
+          // Großes Portrait, randlos über die Karte (Panel hat px-5 / pt-[15px])
+          <div className="relative -mx-5 -mt-[15px] aspect-[4/3] overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt={r.persona.name} src={r.persona.image} className="size-full object-cover object-top" />
+            <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-b from-transparent to-[#101018]/90" />
+          </div>
+        )}
         <div className="flex items-start justify-between gap-3">
           <div>
             <Overline className="text-teal">Your customer</Overline>
             <h2 className="mt-2 text-[30px] font-light leading-none">{r.persona.name}</h2>
             {r.persona.tagline && <p className="mt-1.5 text-[13px] text-white/60">{r.persona.tagline}</p>}
           </div>
-          <div className="flex size-14 shrink-0 items-center justify-center rounded-full bg-copper-gradient text-[22px] font-medium">{r.persona.name[0]}</div>
+          {!r.persona.image && <PersonaAvatar name={r.persona.name} />}
         </div>
         <p className="text-[15px] leading-[1.45] text-white/85">{r.persona.description}</p>
       </Panel>

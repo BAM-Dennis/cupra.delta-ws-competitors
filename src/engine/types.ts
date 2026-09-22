@@ -35,6 +35,8 @@ export interface Persona {
   name: string;
   tagline?: string;
   description: string;
+  /** Portrait unter public/, z. B. "/personas/paula.jpg". Ohne Bild zeigt die App den Anfangsbuchstaben. */
+  image?: string;
   needIds: string[];
 }
 

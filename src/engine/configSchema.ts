@@ -30,6 +30,7 @@ const roundSchema = z.object({
     name: z.string().min(1),
     tagline: z.string().optional(),
     description: z.string().min(1),
+    image: z.string().optional(),
     needIds: z.array(id).min(1),
   }),
   categories: z.array(z.object({ id, title: z.string().min(1), prompts: z.array(z.string().min(1)).min(1) })).min(1),

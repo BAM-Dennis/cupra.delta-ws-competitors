@@ -6,35 +6,138 @@
   "title": "Competitor Workshop I",
   "_note": "Seed content by SAPERED (14.09.2026), grounded on public CUPRA Raval research. Placeholder until CUPRA confirms. Physical competitors in the room: Volvo EX30 and Alfa Romeo Junior. Categories are show-only; range, price and charging are tell and live in the trainer outro. Note for the LLM scorer: design arguments against the Alfa are Alfa's home turf and should be scored weaker.",
   "brands": [
-    { "id": "cupra", "name": "CUPRA Delta", "short": "CUPRA", "isCupra": true, "present": true },
-    { "id": "volvo-ex30", "name": "Volvo EX30", "short": "EX30", "present": true },
-    { "id": "alfa-junior", "name": "Alfa Romeo Junior", "short": "Junior", "present": true },
-    { "id": "mini", "name": "MINI Cooper E", "short": "MINI", "present": false },
-    { "id": "fiat", "name": "Fiat 500e", "short": "500e", "present": false },
-    { "id": "renault-5", "name": "Renault 5 E-Tech", "short": "R5", "present": false },
-    { "id": "peugeot", "name": "Peugeot e-208", "short": "e-208", "present": false },
-    { "id": "byd", "name": "BYD Dolphin", "short": "Dolphin", "present": false }
+    {
+      "id": "cupra",
+      "name": "CUPRA Delta",
+      "short": "CUPRA",
+      "isCupra": true,
+      "present": true
+    },
+    {
+      "id": "volvo-ex30",
+      "name": "Volvo EX30",
+      "short": "EX30",
+      "present": true
+    },
+    {
+      "id": "alfa-junior",
+      "name": "Alfa Romeo Junior",
+      "short": "Junior",
+      "present": true
+    },
+    {
+      "id": "mini",
+      "name": "MINI Cooper E",
+      "short": "MINI",
+      "present": false
+    },
+    {
+      "id": "fiat",
+      "name": "Fiat 500e",
+      "short": "500e",
+      "present": false
+    },
+    {
+      "id": "renault-5",
+      "name": "Renault 5 E-Tech",
+      "short": "R5",
+      "present": false
+    },
+    {
+      "id": "peugeot",
+      "name": "Peugeot e-208",
+      "short": "e-208",
+      "present": false
+    },
+    {
+      "id": "byd",
+      "name": "BYD Dolphin",
+      "short": "Dolphin",
+      "present": false
+    }
   ],
   "needs": [
     {
       "id": "n-family-kit",
       "text": "Fits the family kit: buggy plus the weekly shop",
-      "keywords": ["buggy", "stroller", "pram", "pushchair", "weekly shop", "shopping", "groceries", "boot", "trunk", "luggage", "load", "family kit", "fits", "fit everything"]
+      "keywords": [
+        "buggy",
+        "stroller",
+        "pram",
+        "pushchair",
+        "weekly shop",
+        "shopping",
+        "groceries",
+        "boot",
+        "trunk",
+        "luggage",
+        "load",
+        "family kit",
+        "fits",
+        "fit everything"
+      ]
     },
     {
       "id": "n-rear-room",
       "text": "Roomy in the back: space for a grandparent next to the child seat, easy child-seat access",
-      "keywords": ["back seat", "rear", "in the back", "child seat", "grandparent", "grandma", "grandpa", "roomy", "room in the back", "legroom", "door opening", "access", "isofix", "get in"]
+      "keywords": [
+        "back seat",
+        "rear",
+        "in the back",
+        "child seat",
+        "grandparent",
+        "grandma",
+        "grandpa",
+        "roomy",
+        "room in the back",
+        "legroom",
+        "door opening",
+        "access",
+        "isofix",
+        "get in"
+      ]
     },
     {
       "id": "n-tech-works",
       "text": "Tech that just works on the move, without fighting menus",
-      "keywords": ["tech", "screen", "menu", "menus", "infotainment", "controls", "buttons", "without looking", "on the move", "easy to use", "intuitive", "just works", "in traffic", "distraction", "eyes on the road"]
+      "keywords": [
+        "tech",
+        "screen",
+        "menu",
+        "menus",
+        "infotainment",
+        "controls",
+        "buttons",
+        "without looking",
+        "on the move",
+        "easy to use",
+        "intuitive",
+        "just works",
+        "in traffic",
+        "distraction",
+        "eyes on the road"
+      ]
     },
     {
       "id": "n-comfort",
       "text": "Comfortable and not tiring over a long commute, with good visibility",
-      "keywords": ["comfort", "comfortable", "tiring", "fatigue", "commute", "two hours", "long day", "seat", "seating", "position", "support", "visibility", "ergonomic", "ergonomics", "relaxed"]
+      "keywords": [
+        "comfort",
+        "comfortable",
+        "tiring",
+        "fatigue",
+        "commute",
+        "two hours",
+        "long day",
+        "seat",
+        "seating",
+        "position",
+        "support",
+        "visibility",
+        "ergonomic",
+        "ergonomics",
+        "relaxed"
+      ]
     }
   ],
   "differentiators": [
@@ -42,101 +145,301 @@
       "id": "d-boot",
       "tag": "show",
       "text": "Class-leading boot, around 441 litres, flat load floor, folding rear seats",
-      "vsBrandIds": ["volvo-ex30", "alfa-junior", "mini", "fiat", "renault-5", "peugeot"],
-      "needIds": ["n-family-kit"],
+      "vsBrandIds": [
+        "volvo-ex30",
+        "alfa-junior",
+        "mini",
+        "fiat",
+        "renault-5",
+        "peugeot"
+      ],
+      "needIds": [
+        "n-family-kit"
+      ],
       "key": true,
-      "keywords": ["441", "litres", "liters", "boot", "trunk", "flat floor", "load floor", "flat load", "folding", "fold the seats", "fold down", "bigger boot", "more boot"]
+      "keywords": [
+        "441",
+        "litres",
+        "liters",
+        "boot",
+        "trunk",
+        "flat floor",
+        "load floor",
+        "flat load",
+        "folding",
+        "fold the seats",
+        "fold down",
+        "bigger boot",
+        "more boot"
+      ]
     },
     {
       "id": "d-cabin",
       "tag": "show",
       "text": "Spacious cabin, long 2599 mm wheelbase, real rear-seat room",
-      "vsBrandIds": ["volvo-ex30", "mini", "fiat", "renault-5", "peugeot"],
-      "needIds": ["n-rear-room"],
+      "vsBrandIds": [
+        "volvo-ex30",
+        "mini",
+        "fiat",
+        "renault-5",
+        "peugeot"
+      ],
+      "needIds": [
+        "n-rear-room"
+      ],
       "key": true,
-      "keywords": ["wheelbase", "2599", "rear seat room", "rear room", "rear space", "spacious", "cabin", "legroom", "roomier", "more space in the back", "knee room"]
+      "keywords": [
+        "wheelbase",
+        "2599",
+        "rear seat room",
+        "rear room",
+        "rear space",
+        "spacious",
+        "cabin",
+        "legroom",
+        "roomier",
+        "more space in the back",
+        "knee room"
+      ]
     },
     {
       "id": "d-doors",
       "tag": "show",
       "text": "Wide door openings and easy child-seat access",
-      "vsBrandIds": ["volvo-ex30", "alfa-junior", "mini", "fiat", "renault-5"],
-      "needIds": ["n-rear-room"],
-      "keywords": ["door opening", "door openings", "wide doors", "wide opening", "child seat", "isofix", "easy access", "get the seat in", "lift the child", "climb in"]
+      "vsBrandIds": [
+        "volvo-ex30",
+        "alfa-junior",
+        "mini",
+        "fiat",
+        "renault-5"
+      ],
+      "needIds": [
+        "n-rear-room"
+      ],
+      "keywords": [
+        "door opening",
+        "door openings",
+        "wide doors",
+        "wide opening",
+        "child seat",
+        "isofix",
+        "easy access",
+        "get the seat in",
+        "lift the child",
+        "climb in"
+      ]
     },
     {
       "id": "d-screen",
       "tag": "show",
       "text": "12.9-inch responsive infotainment plus a sporty digital cockpit",
-      "vsBrandIds": ["alfa-junior", "volvo-ex30", "fiat", "renault-5", "peugeot"],
-      "needIds": ["n-tech-works"],
+      "vsBrandIds": [
+        "alfa-junior",
+        "volvo-ex30",
+        "fiat",
+        "renault-5",
+        "peugeot"
+      ],
+      "needIds": [
+        "n-tech-works"
+      ],
       "key": true,
-      "keywords": ["12.9", "12,9", "inch screen", "big screen", "large screen", "infotainment", "digital cockpit", "responsive", "fast menus", "quick menus", "display", "clear menus"]
+      "keywords": [
+        "12.9",
+        "12,9",
+        "inch screen",
+        "big screen",
+        "large screen",
+        "infotainment",
+        "digital cockpit",
+        "responsive",
+        "fast menus",
+        "quick menus",
+        "display",
+        "clear menus"
+      ]
     },
     {
       "id": "d-controls",
       "tag": "show",
       "text": "Physical steering-wheel and cabin controls, usable without looking",
-      "vsBrandIds": ["alfa-junior", "volvo-ex30", "fiat", "peugeot"],
-      "needIds": ["n-tech-works"],
-      "keywords": ["physical controls", "physical buttons", "real buttons", "buttons", "steering wheel controls", "steering wheel", "wheel buttons", "without looking", "knobs", "haptic", "eyes on the road"]
+      "vsBrandIds": [
+        "alfa-junior",
+        "volvo-ex30",
+        "fiat",
+        "peugeot"
+      ],
+      "needIds": [
+        "n-tech-works"
+      ],
+      "keywords": [
+        "physical controls",
+        "physical buttons",
+        "real buttons",
+        "buttons",
+        "steering wheel controls",
+        "steering wheel",
+        "wheel buttons",
+        "without looking",
+        "knobs",
+        "haptic",
+        "eyes on the road"
+      ]
     },
     {
       "id": "d-seating",
       "tag": "show",
       "text": "Driver-focused seating position with good support",
-      "vsBrandIds": ["alfa-junior", "volvo-ex30", "mini", "fiat", "renault-5", "peugeot", "byd"],
-      "needIds": ["n-comfort"],
+      "vsBrandIds": [
+        "alfa-junior",
+        "volvo-ex30",
+        "mini",
+        "fiat",
+        "renault-5",
+        "peugeot",
+        "byd"
+      ],
+      "needIds": [
+        "n-comfort"
+      ],
       "key": true,
-      "keywords": ["seating position", "driving position", "seat position", "support", "supportive", "driver-focused", "driver focused", "visibility", "ergonomics", "hold you", "long drives", "sit well"]
+      "keywords": [
+        "seating position",
+        "driving position",
+        "seat position",
+        "support",
+        "supportive",
+        "driver-focused",
+        "driver focused",
+        "visibility",
+        "ergonomics",
+        "hold you",
+        "long drives",
+        "sit well"
+      ]
     },
     {
       "id": "d-materials",
       "tag": "show",
       "text": "Solid material quality and finish at the touch points",
-      "vsBrandIds": ["alfa-junior", "volvo-ex30", "fiat", "renault-5", "peugeot", "byd"],
-      "needIds": ["n-comfort"],
-      "keywords": ["material", "materials", "quality", "finish", "touch points", "soft touch", "build quality", "solid", "well made", "feels premium"]
+      "vsBrandIds": [
+        "alfa-junior",
+        "volvo-ex30",
+        "fiat",
+        "renault-5",
+        "peugeot",
+        "byd"
+      ],
+      "needIds": [
+        "n-comfort"
+      ],
+      "keywords": [
+        "material",
+        "materials",
+        "quality",
+        "finish",
+        "touch points",
+        "soft touch",
+        "build quality",
+        "solid",
+        "well made",
+        "feels premium"
+      ]
     },
     {
       "id": "d-efficiency",
       "tag": "tell",
       "text": "Best-in-class efficiency, around 161 Wh/km, low running cost",
-      "vsBrandIds": ["volvo-ex30", "alfa-junior"],
-      "needIds": ["n-comfort"],
-      "keywords": ["efficiency", "wh/km", "161", "running cost", "consumption"]
+      "vsBrandIds": [
+        "volvo-ex30",
+        "alfa-junior"
+      ],
+      "needIds": [
+        "n-comfort"
+      ],
+      "keywords": [
+        "efficiency",
+        "wh/km",
+        "161",
+        "running cost",
+        "consumption"
+      ]
     },
     {
       "id": "d-price",
       "tag": "tell",
       "text": "Entry price around 26,000 euros",
-      "vsBrandIds": ["volvo-ex30", "alfa-junior"],
-      "needIds": ["n-family-kit"],
-      "keywords": ["price", "26,000", "26000", "euros", "cheaper", "affordable"]
+      "vsBrandIds": [
+        "volvo-ex30",
+        "alfa-junior"
+      ],
+      "needIds": [
+        "n-family-kit"
+      ],
+      "keywords": [
+        "price",
+        "26,000",
+        "26000",
+        "euros",
+        "cheaper",
+        "affordable"
+      ]
     },
     {
       "id": "d-range",
       "tag": "tell",
       "text": "Real range around 310 km, up to about 446 km WLTP on the larger battery",
-      "vsBrandIds": ["volvo-ex30", "alfa-junior"],
-      "needIds": ["n-comfort"],
-      "keywords": ["range", "446", "310", "wltp", "km"]
+      "vsBrandIds": [
+        "volvo-ex30",
+        "alfa-junior"
+      ],
+      "needIds": [
+        "n-comfort"
+      ],
+      "keywords": [
+        "range",
+        "446",
+        "310",
+        "wltp",
+        "km"
+      ]
     },
     {
       "id": "d-charging",
       "tag": "tell",
       "text": "DC charging 10 to 80 percent in around 24 minutes",
-      "vsBrandIds": ["volvo-ex30", "alfa-junior"],
-      "needIds": ["n-comfort"],
-      "keywords": ["charging", "24 minutes", "10 to 80", "10-80", "dc"]
+      "vsBrandIds": [
+        "volvo-ex30",
+        "alfa-junior"
+      ],
+      "needIds": [
+        "n-comfort"
+      ],
+      "keywords": [
+        "charging",
+        "24 minutes",
+        "10 to 80",
+        "10-80",
+        "dc"
+      ]
     },
     {
       "id": "d-v2l",
       "tag": "tell",
       "text": "V2L, powers devices from the car",
-      "vsBrandIds": ["volvo-ex30", "alfa-junior"],
-      "needIds": ["n-family-kit"],
-      "keywords": ["v2l", "vehicle to load", "power devices", "plug in"]
+      "vsBrandIds": [
+        "volvo-ex30",
+        "alfa-junior"
+      ],
+      "needIds": [
+        "n-family-kit"
+      ],
+      "keywords": [
+        "v2l",
+        "vehicle to load",
+        "power devices",
+        "plug in"
+      ]
     }
   ],
   "rounds": [
@@ -147,18 +450,28 @@
         "name": "Paula",
         "tagline": "34, lives in the city with her partner and a two-year-old",
         "description": "I've got a two-year-old, a buggy in the boot and the weekly shop to fit in. Sometimes a grandparent rides in the back next to the child seat. My old car is just too small for it. I need one that swallows the family kit and stays roomy in the back.",
-        "needIds": ["n-family-kit", "n-rear-room"]
+        "image": "/personas/paula.jpg",
+        "needIds": [
+          "n-family-kit",
+          "n-rear-room"
+        ]
       },
       "categories": [
         {
           "id": "c-space",
           "title": "Space & Load",
-          "prompts": ["Open the boot: does the buggy plus the weekly shop fit?", "Fold the seats, check the load floor and storage."]
+          "prompts": [
+            "Open the boot: does the buggy plus the weekly shop fit?",
+            "Fold the seats, check the load floor and storage."
+          ]
         },
         {
           "id": "c-access",
           "title": "Interior & Access",
-          "prompts": ["Sit in front and back. How much room is left behind a front seat set for you?", "Get a child seat in and out, check the door openings and rear room."]
+          "prompts": [
+            "Sit in front and back. How much room is left behind a front seat set for you?",
+            "Get a child seat in and out, check the door openings and rear room."
+          ]
         }
       ]
     },
@@ -169,32 +482,69 @@
         "name": "Tom",
         "tagline": "29, commutes almost two hours a day, first new car, tech-savvy",
         "description": "I spend nearly two hours a day in the car. I want it to feel good to sit in, easy to use on the move, and not tiring on a long day. The tech has to just work, I don't want to fight with menus in traffic.",
-        "needIds": ["n-tech-works", "n-comfort"]
+        "needIds": [
+          "n-tech-works",
+          "n-comfort"
+        ]
       },
       "categories": [
         {
           "id": "c-tech",
           "title": "Tech & Interaction",
-          "prompts": ["Try the 12.9-inch screen and the digital cockpit. How fast and clear are the menus?", "Reach the key controls without looking. Which ones are physical?"]
+          "prompts": [
+            "Try the 12.9-inch screen and the digital cockpit. How fast and clear are the menus?",
+            "Reach the key controls without looking. Which ones are physical?"
+          ]
         },
         {
           "id": "c-ergonomics",
           "title": "Ergonomics & Comfort",
-          "prompts": ["Take the driving seat: position, support, visibility.", "Would this feel right after two hours?"]
+          "prompts": [
+            "Take the driving seat: position, support, visibility.",
+            "Would this feel right after two hours?"
+          ]
         }
       ]
     }
   ],
   "matrix": {
     "axes": {
-      "x": { "label": "Character", "low": "Rational", "high": "Emotional" },
-      "y": { "label": "Brand stance", "low": "Established", "high": "Challenger" }
+      "x": {
+        "label": "Character",
+        "low": "Rational",
+        "high": "Emotional"
+      },
+      "y": {
+        "label": "Brand stance",
+        "low": "Established",
+        "high": "Challenger"
+      }
     },
     "positions": [
-      { "id": "p-rat-chal", "label": "Rational · Challenger", "x": 0, "y": 1 },
-      { "id": "p-emo-chal", "label": "Emotional · Challenger", "x": 1, "y": 1 },
-      { "id": "p-rat-est", "label": "Rational · Established", "x": 0, "y": 0 },
-      { "id": "p-emo-est", "label": "Emotional · Established", "x": 1, "y": 0 }
+      {
+        "id": "p-rat-chal",
+        "label": "Rational · Challenger",
+        "x": 0,
+        "y": 1
+      },
+      {
+        "id": "p-emo-chal",
+        "label": "Emotional · Challenger",
+        "x": 1,
+        "y": 1
+      },
+      {
+        "id": "p-rat-est",
+        "label": "Rational · Established",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "id": "p-emo-est",
+        "label": "Emotional · Established",
+        "x": 1,
+        "y": 0
+      }
     ],
     "solution": {
       "cupra": "p-emo-chal",
